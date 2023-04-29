@@ -94,13 +94,10 @@ export const LogoutIcon = (props: IconProps) => {
         className={`${props.className}`}
         onClick={props.onClick}
     >
-        <svg x="0px" y="0px" viewBox="0 0 432.116 432.116" fill="currentColor" className={`w-px-${props.width}`}>
-            <circle cx="108.75" cy="67.982" r="60"/>
-            <path d="M274.715,167.303c-54.826,0-99.43,44.604-99.43,99.429s44.604,99.43,99.43,99.43s99.43-44.604,99.43-99.43
-		S329.541,167.303,274.715,167.303z M328.809,299.613l-21.213,21.213l-32.881-32.881l-32.881,32.881l-21.213-21.213l32.881-32.881
-		l-32.881-32.881l21.213-21.213l32.881,32.881l32.881-32.881l21.213,21.213l-32.881,32.881L328.809,299.613z"/>
-            <path d="M108.75,157.982C48.689,157.982,0,206.671,0,266.732h145.285c0-32.364,11.941-61.991,31.647-84.709
-		C158.281,166.99,134.571,157.982,108.75,157.982z"/>
+        <svg className={`w-px-${props.width}`} viewBox="0 0 24 24" fill="transparent">
+            <path d="M17.4399 14.62L19.9999 12.06L17.4399 9.5" stroke="#ffffff" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M9.76001 12.0601H19.93" stroke="#ffffff" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M11.76 20C7.34001 20 3.76001 17 3.76001 12C3.76001 7 7.34001 4 11.76 4" stroke="#ffffff" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" stroke-linejoin="round"/>
         </svg>
     </div>;
 };

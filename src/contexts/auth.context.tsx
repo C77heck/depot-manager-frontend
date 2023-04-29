@@ -23,6 +23,7 @@ const AuthContext = createContext({
     isLoggedIn: false,
     error: '',
     isLoading: false,
+    isReady: false,
     login: async (data: UserProps) => {
     },
     register: async (data: UserRegistrationProps) => {
@@ -41,6 +42,7 @@ export const WithAuthContext = ({ children }: { children: Children }) => {
     const endpoint = `${import.meta.env.VITE_API_ENDPOINT}/user`;
     const storage = new Storage<UserProps>('auth');
     const [userId, setUserId] = useState('');
+    const [isReady, setIsReady] = useState(false);
     const [token, setToken] = useState('');
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
@@ -51,9 +53,12 @@ export const WithAuthContext = ({ children }: { children: Children }) => {
 
         if (savedAuth && savedAuth.expiry > Date.now()) {
             setUserId(userId);
+            setIsLoggedIn(true);
             setToken(token);
             setIsLoggedIn(true);
         }
+
+        setIsReady(true);
     }, []);
 
     const login = useCallback(async (data: UserProps) => {
@@ -150,7 +155,7 @@ export const WithAuthContext = ({ children }: { children: Children }) => {
     }, []);
 
     return <AuthContext.Provider
-        value={{ userId, token, isLoggedIn, login, logout, isLoading, error, deleteAccount, update, whoami, register }}
+        value={{ userId, token, isLoggedIn, login, logout, isLoading, error, deleteAccount, update, whoami, register, isReady }}
     >
         {children}
     </AuthContext.Provider>;

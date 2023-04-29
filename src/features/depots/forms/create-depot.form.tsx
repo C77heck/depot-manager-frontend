@@ -1,25 +1,25 @@
 import * as React from 'react';
 import { FormEvent, useState } from 'react';
-import { useAuthContext, UserProps } from '../../../contexts/auth.context';
 import { useTranslateContext } from '../../../contexts/translate.context';
+import { CreateDepotOptions, useClient } from '../../../hooks/client.hook';
 import { useForm } from '../../../hooks/form.hook';
+import { FormProps } from '../../authentication/forms/register.form';
 import { Button } from '../../shared-ui/buttons/button';
 import { Input } from '../../shared-ui/inputs/input';
-import { emailValidator } from '../../shared-ui/inputs/validators/email.validator';
+import { onlyNumberValidator } from '../../shared-ui/inputs/validators/only-number.validator';
 import { requiredValidator } from '../../shared-ui/inputs/validators/required.validator';
-import { FormProps } from './register.form';
 
-export const LoginForm = (props: FormProps) => {
-    const { login, error, isLoading } = useAuthContext();
+export const CreateDepotForm = (props: FormProps) => {
+    const { createDepot, error, isLoading } = useClient();
     const { trans } = useTranslateContext();
     const [validate, setValidate] = useState(false);
     const { inputHandler, payload, isFormValid, fields } = useForm({
         fields: {
-            email: {
+            name: {
                 value: '',
                 isValid: false
             },
-            password: {
+            maximumCapacity: {
                 value: '',
                 isValid: false
             },
@@ -34,7 +34,7 @@ export const LoginForm = (props: FormProps) => {
             return setValidate(!validate);
         }
 
-        await login(payload as UserProps);
+        await createDepot(payload as CreateDepotOptions);
 
         props.onSuccess();
     };
@@ -46,34 +46,28 @@ export const LoginForm = (props: FormProps) => {
                     <Input
                         validate={validate}
                         inputHandler={inputHandler}
-                        value={fields.email.value}
-                        name={'email'}
-                        validators={[emailValidator]}
-                        label={trans('email')}
+                        value={fields.name.value}
+                        name={'name'}
+                        validators={[requiredValidator]}
+                        label={trans('depot.name')}
                     />
                 </div>
                 <div className={'max-width-30 w-100'}>
                     <Input
                         validate={validate}
                         inputHandler={inputHandler}
-                        value={fields.password.value}
-                        name={'password'}
-                        type={'password'}
-                        validators={[requiredValidator]}
-                        label={trans('password')}
+                        value={fields.maximumCapacity.value}
+                        name={'maximumCapacity'}
+                        validators={[requiredValidator, onlyNumberValidator]}
+                        label={trans('maximum.capacity')}
                     />
                 </div>
             </div>
-            <div className={'w-100 center'}>
+            <div className={'w-100 center pb-30'}>
                 <div className={'max-width-30 w-100'}>
-                    <Button isLoading={isLoading} type={'submit'} buttonStyle={'submit'} title={trans('login')}/>
+                    <Button isLoading={isLoading} type={'submit'} buttonStyle={'submit'} title={trans('submit')}/>
                 </div>
             </div>
         </form>
-        <div className={'w-100 center pt-10'}>
-            <Button buttonStyle={'link'} onClick={props.onClick}>
-                <span className={'color-dark-2'}>{trans('register')}</span>
-            </Button>
-        </div>
     </div>;
 };

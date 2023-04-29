@@ -15,6 +15,8 @@ export default {
     closed: 'Closed',
     open: 'Open',
     full: 'Full',
+    submit: 'Submit',
+    'only.numbers': 'Input must be numeric',
     'received.packages': 'Full',
     'sent.packages': 'Full',
     empty: 'Empty',
@@ -32,5 +34,8 @@ export default {
     'must.contain.numeric': 'Must contain at least one numeric value',
     'must.contain.special.char': 'Must contain special characters',
     'must.contain.lower.case': 'Must contain lower case letter(s)',
-    'must.contain.uppercase': 'Must contain upper case letter(s)'
+    'must.contain.uppercase': 'Must contain upper case letter(s)',
+    'new.depot': 'New depot',
+    'depot.name': 'Depot name',
+    'maximum.capacity': 'Depot maximum capacity',
 };

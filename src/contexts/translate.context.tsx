@@ -15,7 +15,6 @@ export enum AvailableLang {
 const TranslateContext = createContext({
     lang: AvailableLang,
     changeLang: (newLang: AvailableLang) => {
-
     },
     trans: (key: LangKey) => '',
 });

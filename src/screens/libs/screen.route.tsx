@@ -28,7 +28,7 @@ export const ScreenRoute = (props: ScreenRouteProps) => {
                         {/*<Spinner onComplete={() => setReady(true)}/>*/}
                     </div>
                 </div>
-                : <div className={'screen-view p-20'}>
+                : <div className={'screen-view p-20 pt-170'}>
                     <NavBar/>
                     {props.auth ? <AuthHandler>{props.children}</AuthHandler> : props.children}
                 </div>}/>

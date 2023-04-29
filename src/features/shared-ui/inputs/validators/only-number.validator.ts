@@ -7,5 +7,5 @@ export const onlyNumberValidator = (value: any): ValidatorInterface => {
 
     const hasOnlyNumbers = /^[0-9]*$/;
 
-    return { hasError: !hasOnlyNumbers.test(value), errorMessage: '' };
+    return { hasError: !hasOnlyNumbers.test(value), errorMessage: 'only.numbers' };
 };

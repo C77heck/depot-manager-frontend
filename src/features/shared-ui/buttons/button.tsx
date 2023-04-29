@@ -36,7 +36,7 @@ const getButtonType = (type: string) => {
         case 'submit':
             return 'button button--submit';
         case 'link':
-            return 'button button--login';
+            return 'button button--link';
         case 'logout':
             return 'button button--login';
         default:

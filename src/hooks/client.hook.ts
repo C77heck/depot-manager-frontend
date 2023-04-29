@@ -7,6 +7,13 @@ export interface DeleteDepotOptions {
     transferDepotId: string;
 }
 
+export interface CreateDepotOptions {
+    name: string;
+    maximumCapacity: number;
+}
+
+export type UpdateDepotOptions = { id: string } & CreateDepotOptions;
+
 export const useClient = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
@@ -92,7 +99,7 @@ export const useClient = () => {
             setIsLoading(false);
         }
     };
-    const createDepot = async (data: { name: string; maximumCapacity: number; }) => {
+    const createDepot = async (data: CreateDepotOptions) => {
         try {
             setIsLoading(true);
 
@@ -106,7 +113,7 @@ export const useClient = () => {
         }
     };
 
-    const updateDepot = async (data: { id: string; name: string; maximumCapacity: number; }) => {
+    const updateDepot = async (data: UpdateDepotOptions) => {
         try {
             setIsLoading(true);
 

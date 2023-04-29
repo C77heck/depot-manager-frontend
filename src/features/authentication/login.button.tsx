@@ -3,13 +3,13 @@ import { useEffect, useState } from 'react';
 import { useAuthContext } from '../../contexts/auth.context';
 import { useTranslateContext } from '../../contexts/translate.context';
 import { useDebounce } from '../../hooks/debounce.hook';
-import { LoginIcon, LogoutIcon } from '../shared-ui/icons/icons';
+import { LoginIcon, LogoutIcon, SpinnerIcon } from '../shared-ui/icons/icons';
 import { Modal } from '../shared-ui/modal/modal';
 import { LoginForm } from "./forms/login.form";
 import { RegisterForm } from "./forms/register.form";
 
 export const LoginButton = () => {
-    const { logout, isLoggedIn } = useAuthContext();
+    const { logout, isLoggedIn, isReady } = useAuthContext();
     const [isRegister, setIsRegister] = useState(false);
     const [show, setShow] = useState(true);
     const { trans } = useTranslateContext();
@@ -21,12 +21,18 @@ export const LoginButton = () => {
         }
     }, [show]);
 
+    if (!isReady) {
+        return <button className={'center nav-bar-item bgc-primary-1 hover-scale'}>
+            <SpinnerIcon className={'center color-light-1'} width={25}/>
+        </button>;
+    }
+
     if (isLoggedIn) {
         return <button
             onClick={logout}
             className={'center nav-bar-item bgc-primary-1 hover-scale'}
         >
-            <LogoutIcon className={'center color-primary-2'} width={25}/>
+            <LogoutIcon className={'center color-primary-2'} width={28}/>
         </button>;
     }
 
