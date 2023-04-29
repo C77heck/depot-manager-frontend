@@ -1,0 +1,75 @@
+@import "helpers";
+
+// @MEDIA
+$xl: 100em; // 1600
+$lg: 90em; // 1440
+$mlg: 56.25em; // 900
+$md: 48.5em; //776
+$sm: 37.5em; // 600
+
+$colours: (
+    primary: (
+        1: #00ABE7,
+        2: #4DC4EE,
+    ),
+    secondary: (
+        1: #00ABE7,
+        2: #4DC4EE,
+    ),
+    light: (
+        1: #ffffff,
+        2: #e0e0e0,
+    ),
+    dark: (
+        1: #373838,
+        2: #727373,
+        3: #bdbebe,
+    ),
+    error: (
+        1: #cc3838,
+        2: rgba(204, 56, 56, 0.54),
+    ),
+    success: (
+        1: #38c74e,
+        2: rgba(56, 199, 78, 0.5),
+    ),
+);
+
+
+* {
+    box-sizing: border-box;
+    outline: none;
+}
+
+::selection {
+    background-color: var(--color-secondary-2);
+    color: var(--color-dark-3);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+*,
+*::after,
+*::before {
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%; // 1rem = 10px, 10px/16px = 62.5%
+
+    @media only screen and (max-width: 37.5em) {
+        font-size: 50%;
+    }
+
+    @media screen and (max-width: 68.75em) {
+        font-size: 58%;
+    }
+}
+
+.base-layout-width {
+    max-width: 115rem;
+}

@@ -1,0 +1,38 @@
+@mixin Navbar($colours) {
+    .login-button {
+        width: 104px;
+        height: 38px;
+        border-radius: 800px;
+        border: solid 1px map-get-deep($colours, 'primary', 1);
+    }
+
+    .nav-bar {
+        z-index: 200;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: var(--color-primary-transparent);
+
+        &--ul {
+            display: flex;
+
+            & li {
+                text-decoration: none;
+                font-size: 2rem;
+                list-style: none;
+                padding: 2rem;
+                cursor: pointer;
+                transition: all 250ms;
+
+                & a {
+                    text-decoration: none;
+                }
+
+                &:hover {
+                    opacity: 0.7;
+                }
+            }
+        }
+    }
+}
