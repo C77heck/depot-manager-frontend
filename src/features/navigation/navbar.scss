@@ -1,5 +1,5 @@
 @mixin Navbar($colours) {
-    .login-button {
+    .nav-bar-item {
         width: 104px;
         height: 38px;
         border-radius: 800px;
@@ -7,12 +7,15 @@
     }
 
     .nav-bar {
+        border-radius: 800px;
         z-index: 200;
         position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        background-color: var(--color-primary-transparent);
+        top: 4vh;
+        left: 25vw;
+        width: 50vw;
+        background-color: map-get-deep($colours, 'primary', 3);
+        padding: .5rem 2rem;
+        cursor: pointer;
 
         &--ul {
             display: flex;

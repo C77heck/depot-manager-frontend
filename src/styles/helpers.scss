@@ -144,6 +144,14 @@
         border-bottom: none;
     }
 
+    .border-1 {
+        border: solid 1px map-get-deep($colours, 'light', 1);
+    }
+
+    .round {
+        border-radius: 50%;
+    }
+
     .border-box {
         box-sizing: border-box;
     }
@@ -221,7 +229,7 @@
 
         &:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 8px 0 map-get-deep($colours, 'dark', 3);
+            box-shadow: 0 4px 8px 0 map-get-deep($colours, 'primary', 3);
         }
 
         &:active {
@@ -298,7 +306,7 @@
         }
     }
 
-    @each $i in 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 {
+    @each $i in 10, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100 {
         .#{w- + $i} {
             width: $i * 1% !important;
         }
@@ -307,7 +315,7 @@
         }
     }
 
-    @each $i in 5, 10, 20, 30, 50, 100, 150, 110, 200 {
+    @each $i in 5, 10, 20, 30, 50, 100, 150, 110, 200, 300 {
         .#{z- + $i} {
             z-index: $i !important;
         }

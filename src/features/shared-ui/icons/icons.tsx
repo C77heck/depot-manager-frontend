@@ -77,6 +77,18 @@ export const LoginIcon = (props: IconProps) => {
     </div>;
 };
 
+export const HomeIcon = (props: IconProps) => {
+    return <div
+        className={`${props.className}`}
+        onClick={props.onClick}
+    >
+        <svg className={`w-px-${props.width}`} viewBox="0 0 1024 1024">
+            <path fill="currentColor" d="M512 128 128 447.936V896h255.936V640H640v256h255.936V447.936z"/>
+        </svg>
+    </div>;
+
+};
+
 export const LogoutIcon = (props: IconProps) => {
     return <div
         className={`${props.className}`}

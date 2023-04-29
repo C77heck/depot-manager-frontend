@@ -1,9 +1,12 @@
+import * as React from 'react';
 import { useCallback } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { Constants } from '../../libs/constants';
+import { LoginButton } from '../authentication/login.button';
+import { LangPicker } from '../lang-picker/lang-picker';
+import { HomeIcon } from '../shared-ui/icons/icons';
 import { Portal } from '../shared-ui/portal';
 import './navbar.scss';
-import { LoginButton } from '../authentication/login.button';
 
 export const NavBar = (props: any) => {
     const { home } = Constants.routes;
@@ -19,12 +22,17 @@ export const NavBar = (props: any) => {
 
     return <Portal elementId={'navbar'}>
         <nav className={'nav-bar center row'}>
-            <div className={'col-md-18 display-flex justify-content-space-between'}>
+            <div className={'col-8 center'}>
                 <NavLink className={getColor(home.link)} to={home.link}>
-                    {home.title}
+                    <button className={'center nav-bar-item bgc-primary-1 hover-scale'}>
+                        <HomeIcon width={29} className={'color-light-1'}/>
+                    </button>
                 </NavLink>
             </div>
-            <div className={'col-md-6 display-flex justify-content-space-between'}>
+            <div className={'col-8 center'}>
+                <LangPicker/>
+            </div>
+            <div className={'col-8 center'}>
                 <LoginButton/>
             </div>
         </nav>

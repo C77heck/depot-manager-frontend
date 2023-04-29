@@ -7,7 +7,7 @@ import { Children } from './auth.context';
 
 export type LangKey = keyof typeof en;
 
-enum AvailableLang {
+export enum AvailableLang {
     en = 'en',
     hu = 'hu'
 }

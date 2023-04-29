@@ -102,7 +102,7 @@ export class Modal extends React.Component<ModalProps, any> {
             case 3:
                 return 'z-110';
             default:
-                return 'z-100';
+                return 'z-300';
         }
     }
 

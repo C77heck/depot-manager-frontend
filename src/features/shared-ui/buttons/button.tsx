@@ -26,7 +26,7 @@ export const Button = (props: ButtonProps) => {
     >
         <ButtonContent
             isLoading={!!props.isLoading}
-            content={props.children ? props.children : <span className={'color--light fs-18'}>{props.title}</span>}
+            content={props.children ? props.children : <span className={'color--light fs-17'}>{props.title}</span>}
         />
     </button>;
 };

@@ -24,7 +24,7 @@ export const LoginButton = () => {
     if (isLoggedIn) {
         return <button
             onClick={logout}
-            className={'center login-button bgc-primary-1 hover-scale'}
+            className={'center nav-bar-item bgc-primary-1 hover-scale'}
         >
             <LogoutIcon className={'center color-primary-2'} width={25}/>
         </button>;
@@ -32,14 +32,13 @@ export const LoginButton = () => {
 
     return <Modal
         show={show}
-        level={2}
         className={'border-radius-px-5 p-15'}
         content={isRegister
             ? <RegisterForm onSuccess={() => setShow(false)} onClick={() => setIsRegister(false)}/>
             : <LoginForm onSuccess={() => setShow(false)} onClick={() => setIsRegister(true)}/>}
         size={{ sm: 90, md: 72, lg: 40, xl: 30 }}
         header={<h2 className={'fs-30 text-align-center'}>{trans(isRegister ? 'login' : 'register')}</h2>}
-        trigger={<button className={'center login-button bgc-primary-1 hover-scale'}>
+        trigger={<button className={'center nav-bar-item bgc-primary-1 hover-scale'}>
             <LoginIcon className={'center color-light-1'} width={25}/>
         </button>}
     />;

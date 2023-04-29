@@ -1,10 +1,11 @@
 import axios from 'axios';
-import { createContext, useCallback, useContext, useState } from 'react';
+import { createContext, useCallback, useContext, useEffect, useState } from 'react';
+import { Storage } from '../libs/storage';
 
 export interface UserProps {
     userId: string;
     token: string;
-    expiry: Date;
+    expiry: number;
 }
 
 export interface UserRegistrationProps {
@@ -38,11 +39,22 @@ const AuthContext = createContext({
 
 export const WithAuthContext = ({ children }: { children: Children }) => {
     const endpoint = `${import.meta.env.VITE_API_ENDPOINT}/user`;
+    const storage = new Storage<UserProps>('auth');
     const [userId, setUserId] = useState('');
     const [token, setToken] = useState('');
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
+
+    useEffect(() => {
+        const savedAuth = storage.get();
+
+        if (savedAuth && savedAuth.expiry > Date.now()) {
+            setUserId(userId);
+            setToken(token);
+            setIsLoggedIn(true);
+        }
+    }, []);
 
     const login = useCallback(async (data: UserProps) => {
         try {
@@ -50,8 +62,13 @@ export const WithAuthContext = ({ children }: { children: Children }) => {
 
             const response = await axios.post(`${endpoint}/login`, data);
 
-            setUserId(response.data?.payload?.userId);
-            setToken(response.data?.payload?.token);
+            const token = response.data?.payload?.token;
+            const userId = response.data?.payload?.userId;
+            const expiry = Date.now() + 1000 * 60 * 60 * 24;
+            setUserId(userId);
+            setToken(token);
+            setIsLoggedIn(true);
+            storage.set({ token, userId, expiry });
 
             return response.data?.payload;
         } catch (e) {
@@ -121,10 +138,10 @@ export const WithAuthContext = ({ children }: { children: Children }) => {
     const logout = useCallback(async () => {
         try {
             setIsLoading(true);
-
-            const response = await axios.put(`${endpoint}/`, {});
-
-            return response.data?.payload;
+            setIsLoggedIn(false);
+            setToken('');
+            setUserId('');
+            storage.clear();
         } catch (e) {
             setError(e);
         } finally {

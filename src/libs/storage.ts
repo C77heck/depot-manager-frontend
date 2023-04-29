@@ -3,7 +3,7 @@
  * abstracts away the JSON usage
  */
 
-export class Storage {
+export class Storage<T> {
     public name: string;
     public storage = window.localStorage;
 
@@ -16,17 +16,17 @@ export class Storage {
         return !!this.storage.getItem(this.name);
     }
 
-    public set(value: any) {
+    public set(value: T) {
         this.storage.setItem(this.name, JSON.stringify(value, null));
     }
 
-    public get() {
+    public get(): T {
         const val = this.storage.getItem(this.name);
 
         return !!val ? JSON.parse(val) : false;
     }
 
-    public remove() {
+    public clear() {
         this.storage.removeItem(this.name);
     }
 }
