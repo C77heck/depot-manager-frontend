@@ -2,9 +2,9 @@ import { ButtonContent } from './button-content';
 import './button.scss';
 
 export interface ButtonProps {
-    type?: "button" | "submit" | "reset" | undefined;
+    type?: 'button' | 'submit' | 'reset' | undefined;
     className?: string;
-    buttonStyle?: string;
+    buttonStyle?: 'submit' | 'logout' | 'link';
     name?: string;
     id?: string;
     disabled?: boolean;
@@ -35,7 +35,7 @@ const getButtonType = (type: string) => {
     switch (type) {
         case 'submit':
             return 'button button--submit';
-        case 'login':
+        case 'link':
             return 'button button--login';
         case 'logout':
             return 'button button--login';

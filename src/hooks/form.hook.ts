@@ -13,11 +13,10 @@ export interface InputHandlerOptions {
 
 export const useForm = (options: FormOptions) => {
     const [fields, setFields] = useState<FormOptions['fields']>(options.fields);
+    const [payload, setPayload] = useState<object>(null);
     const [isFormValid, setIsFormValid] = useState<boolean>(!!options.isFormValid);
 
-    useEffect(() => validateForm(), [fields]);
-
-    const validateForm = useCallback(() => {
+    useEffect(() => {
         setIsFormValid(() => {
             for (const key of Object.keys(fields)) {
                 if (!fields[key].isValid) {
@@ -27,7 +26,16 @@ export const useForm = (options: FormOptions) => {
 
             return true;
         });
-    }, []);
+
+        setPayload(() => {
+            const data: object = {};
+            for (const key of Object.keys(fields)) {
+                data[key] = fields[key]?.value || '';
+            }
+
+            return data;
+        });
+    }, [fields]);
 
     const inputHandler = useCallback(({ inputKey, value, isValid }: InputHandlerOptions) => {
         setFields(prev => ({
@@ -36,5 +44,5 @@ export const useForm = (options: FormOptions) => {
         }));
     }, []);
 
-    return { inputHandler, isFormValid, fields };
+    return { inputHandler, payload, isFormValid, fields };
 };

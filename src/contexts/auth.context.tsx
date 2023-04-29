@@ -37,7 +37,7 @@ const AuthContext = createContext({
 });
 
 export const WithAuthContext = ({ children }: { children: Children }) => {
-    const endpoint = `${endpoint}}/user`;
+    const endpoint = `${import.meta.env.VITE_API_ENDPOINT}/user`;
     const [userId, setUserId] = useState('');
     const [token, setToken] = useState('');
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -48,9 +48,12 @@ export const WithAuthContext = ({ children }: { children: Children }) => {
         try {
             setIsLoading(true);
 
-            const response = await axios.put(`${endpoint}/`, data);
+            const response = await axios.post(`${endpoint}/login`, data);
 
-            return response.data;
+            setUserId(response.data?.payload?.userId);
+            setToken(response.data?.payload?.token);
+
+            return response.data?.payload;
         } catch (e) {
             setError(e);
         } finally {
@@ -62,9 +65,12 @@ export const WithAuthContext = ({ children }: { children: Children }) => {
         try {
             setIsLoading(true);
 
-            const response = await axios.post(`${endpoint}/`, data);
+            const response = await axios.post(`${endpoint}/register`, data);
 
-            return response.data;
+            setUserId(response.data?.payload?.userId);
+            setToken(response.data?.payload?.token);
+
+            return response.data?.payload;
         } catch (e) {
             setError(e);
         } finally {
@@ -77,8 +83,6 @@ export const WithAuthContext = ({ children }: { children: Children }) => {
             setIsLoading(true);
 
             const response = await await axios.get(`${endpoint}/whoami`, { headers: { Authorization: `Bearer ${token}` } });
-
-            console.log(response);
         } catch (e) {
             setError(e);
         } finally {
@@ -90,9 +94,9 @@ export const WithAuthContext = ({ children }: { children: Children }) => {
         try {
             setIsLoading(true);
 
-            const response = await axios.put(`${endpoint}/`, data);
+            const response = await axios.put(`${endpoint}/update`, data);
 
-            return response.data;
+            return response.data?.payload;
         } catch (e) {
             setError(e);
         } finally {
@@ -104,9 +108,9 @@ export const WithAuthContext = ({ children }: { children: Children }) => {
         try {
             setIsLoading(true);
 
-            const response = await axios.delete(`${endpoint}/`, { headers: { Authorization: `Bearer ${token}` } });
+            const response = await axios.delete(`${endpoint}/delete-account`, { headers: { Authorization: `Bearer ${token}` } });
 
-            return response.data;
+            return response.data?.payload;
         } catch (e) {
             setError(e);
         } finally {
@@ -120,7 +124,7 @@ export const WithAuthContext = ({ children }: { children: Children }) => {
 
             const response = await axios.put(`${endpoint}/`, {});
 
-            return response.data;
+            return response.data?.payload;
         } catch (e) {
             setError(e);
         } finally {

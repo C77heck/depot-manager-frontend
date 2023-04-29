@@ -1,10 +1,10 @@
 @mixin Fonts() {
     @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap');
 
-    p, small, a, div, label, h1, h2, h3, h4, h5, span {
+    p, small, a, div, label, h1, h2, h3, h4, h5 {
         font-family: 'Oswald', sans-serif;
 
-        color: var(--color-dark-2);
+        color: map-get-deep($colours, 'dark', 2);
     }
 
 
@@ -33,7 +33,6 @@
     .header {
         &--1 {
             font-size: clamp(3rem, 3vw, 5rem);
-
         }
     }
 

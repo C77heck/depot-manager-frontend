@@ -13,6 +13,7 @@ export interface Depot {
 export const DepotList = () => {
     const { getResources, getDepots } = useClient();
     const [depots, setDepots] = useState<Depot[]>([]);
+    const [categories, setCategories] = useState<Depot[]>([]);
 
     useEffect(() => {
         (async () => getResources())();
@@ -20,6 +21,7 @@ export const DepotList = () => {
             const depots = await getDepots();
 
             setDepots(depots);
+            setCategories(depots);
         })();
     }, []);
 

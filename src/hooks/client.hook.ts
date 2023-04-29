@@ -10,13 +10,14 @@ export interface DeleteDepotOptions {
 export const useClient = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
+    const endpoint = import.meta.env.VITE_API_ENDPOINT;
     const getResources = async () => {
         try {
             setIsLoading(true);
 
-            const response = await axios.get(`${import.meta.env.VITE_API_ENDPOINT}/products/resources`);
+            const response = await axios.get(`${endpoint}/products/resources`);
 
-            return response.data;
+            return response.data?.payload;
         } catch (e) {
             setError(e);
         } finally {
@@ -28,9 +29,9 @@ export const useClient = () => {
         try {
             setIsLoading(true);
 
-            const response = await axios.get(`${import.meta.env.VITE_API_ENDPOINT}/products/resources`);
+            const response = await axios.get(`${endpoint}/products/resources`);
 
-            return response.data;
+            return response.data?.payload;
         } catch (e) {
             setError(e);
         } finally {
@@ -42,9 +43,9 @@ export const useClient = () => {
         try {
             setIsLoading(true);
 
-            const response = await axios.put(`${import.meta.env.VITE_API_ENDPOINT}/products/transfer/${id}`, { depotId });
+            const response = await axios.put(`${endpoint}/products/transfer/${id}`, { depotId });
 
-            return response.data;
+            return response.data?.payload;
         } catch (e) {
             setError(e);
         } finally {
@@ -56,9 +57,9 @@ export const useClient = () => {
         try {
             setIsLoading(true);
 
-            const response = await axios.put(`${import.meta.env.VITE_API_ENDPOINT}/products/transfer/${id}`, {});
+            const response = await axios.put(`${endpoint}/products/transfer/${id}`, {});
 
-            return response.data;
+            return response.data?.payload;
         } catch (e) {
             setError(e);
         } finally {
@@ -70,9 +71,8 @@ export const useClient = () => {
         try {
             setIsLoading(true);
 
-            const response = await axios.get(`${import.meta.env.VITE_API_ENDPOINT}/depots`);
-
-            return response.data;
+            const response = await axios.get(`${endpoint}/depots`);
+            return response.data?.payload;
         } catch (e) {
             setError(e);
         } finally {
@@ -83,9 +83,9 @@ export const useClient = () => {
         try {
             setIsLoading(true);
 
-            const response = await axios.get(`${import.meta.env.VITE_API_ENDPOINT}/depots/${id}`);
+            const response = await axios.get(`${endpoint}/depots/${id}`);
 
-            return response.data;
+            return response.data?.payload;
         } catch (e) {
             setError(e);
         } finally {
@@ -96,9 +96,9 @@ export const useClient = () => {
         try {
             setIsLoading(true);
 
-            const response = await axios.post(`${import.meta.env.VITE_API_ENDPOINT}/depots`, data);
+            const response = await axios.post(`${endpoint}/depots`, data);
 
-            return response.data;
+            return response.data?.payload;
         } catch (e) {
             setError(e);
         } finally {
@@ -110,9 +110,9 @@ export const useClient = () => {
         try {
             setIsLoading(true);
 
-            const response = await axios.put(`${import.meta.env.VITE_API_ENDPOINT}/depots/${data.id}`, data);
+            const response = await axios.put(`${endpoint}/depots/${data.id}`, data);
 
-            return response.data;
+            return response.data?.payload;
         } catch (e) {
             setError(e);
         } finally {
@@ -124,9 +124,9 @@ export const useClient = () => {
         try {
             setIsLoading(true);
 
-            const response = await axios.put(`${import.meta.env.VITE_API_ENDPOINT}/depots/change-status/${id}`, { newStatus, transferDepotId });
+            const response = await axios.put(`${endpoint}/depots/change-status/${id}`, { newStatus, transferDepotId });
 
-            return response.data;
+            return response.data?.payload;
         } catch (e) {
             setError(e);
         } finally {

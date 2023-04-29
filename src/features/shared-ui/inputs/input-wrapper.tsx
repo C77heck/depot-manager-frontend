@@ -1,25 +1,25 @@
-import React, { RefObject } from 'react';
-import { FieldProps } from '../input';
+import React from 'react';
+import { Children } from '../../../contexts/auth.context';
+import { LangKey, useTranslateContext } from '../../../contexts/translate.context';
 
-interface NormalWrapperProps extends FieldProps {
+interface NormalWrapperProps {
     hasError: boolean;
     errorMessage: string;
-    children: any;
+    label: string;
+    name: string;
+    children: Children;
     isInFocus: boolean;
-    isOverflowHidden?: boolean;
 }
 
 export const InputWrapper = (props: NormalWrapperProps) => {
+    const { trans } = useTranslateContext();
     const errorClass = `error-${props.hasError && !props.isInFocus ? 'show' : 'hide'}--div`;
-    const overflowClass = `${props.isOverflowHidden ? '' : 'overflow-hidden'}`;
-    const wrapperClasses = `position-center input-wrapper ${props.wrapperClasses} ${errorClass} ${overflowClass} cursor-pointer`;
+    const wrapperClasses = `center input-wrapper cursor-pointer ${errorClass}`;
+    const error = trans((props?.errorMessage || '') as LangKey);
 
-    return <div
-        className={`display-flex flex-column ${props.className}`}
-        ref={props.prodRef}
-    >
+    return <div className={`display-flex flex-column w-100`}>
         {props.label && <label
-            className={`input-label error-${props.hasError && !props.isInFocus ? 'show' : 'hide'}--label ${props.labelClass}`}
+            className={`input-label error-${props.hasError && !props.isInFocus ? 'show' : 'hide'}--label`}
             htmlFor={props.name}
         >
             {props.label}
@@ -27,6 +27,6 @@ export const InputWrapper = (props: NormalWrapperProps) => {
         <div className={wrapperClasses}>
             {props.children}
         </div>
-        {!!props.hasError && !props.isInFocus && <small className={'error-show'}>{props.errorMessage || props.errorMessage}</small>}
+        {!!props.hasError && !props.isInFocus && <small className={'error-show fs-12'}>{error}</small>}
     </div>;
 };

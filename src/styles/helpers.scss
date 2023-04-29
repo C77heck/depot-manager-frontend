@@ -302,6 +302,9 @@
         .#{w- + $i} {
             width: $i * 1% !important;
         }
+        .#{max-width- + $i} {
+            max-width: $i + rem !important;
+        }
     }
 
     @each $i in 5, 10, 20, 30, 50, 100, 150, 110, 200 {

@@ -1,6 +1,5 @@
 @import "helpers";
 
-// @MEDIA
 $xl: 100em; // 1600
 $lg: 90em; // 1440
 $mlg: 56.25em; // 900
@@ -26,8 +25,8 @@ $colours: (
         3: #bdbebe,
     ),
     error: (
-        1: #cc3838,
-        2: rgba(204, 56, 56, 0.54),
+        1: #ff0303,
+        2: #ff030352,
     ),
     success: (
         1: #38c74e,
@@ -39,19 +38,11 @@ $colours: (
 * {
     box-sizing: border-box;
     outline: none;
-}
-
-::selection {
-    background-color: var(--color-secondary-2);
-    color: var(--color-dark-3);
-}
-
-* {
     margin: 0;
     padding: 0;
 }
 
-*,
+
 *::after,
 *::before {
     box-sizing: inherit;
@@ -68,8 +59,4 @@ html {
     @media screen and (max-width: 68.75em) {
         font-size: 58%;
     }
-}
-
-.base-layout-width {
-    max-width: 115rem;
 }

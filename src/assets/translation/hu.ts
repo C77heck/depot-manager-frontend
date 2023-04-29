@@ -9,6 +9,7 @@ export default {
     user: 'Felhasználó',
     email: 'Email',
     password: 'Jelszó',
+    'password.again': 'Jelszó mégegyszer',
     status: 'Állapot',
     history: 'Előzmények',
     closed: 'Zárt',

@@ -2,10 +2,14 @@
 @import "styles/globals";
 @import "styles/helpers";
 @import "styles/functions";
+@import "styles/animations";
 @import "features/navigation/navbar";
 @import "features/shared-ui/buttons/button";
+@import "features/shared-ui/inputs/input";
 
 @include Helpers($lg, $xl, $md, $sm, $colours);
 @include Fonts();
+@include Animations();
 @include Button($colours);
 @include Navbar($colours);
+@include Input($colours);

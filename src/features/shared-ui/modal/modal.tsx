@@ -40,7 +40,9 @@ export class Modal extends React.Component<ModalProps, any> {
 
     public componentDidUpdate(prevProps: Readonly<ModalProps>, prevState: Readonly<any>, snapshot?: any) {
         if (prevProps.show !== this.props.show) {
-            this.setState({ show: this.props.show });
+            if (!this.props.show) {
+                this.setState({ show: false });
+            }
         }
     }
 

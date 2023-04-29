@@ -15,9 +15,9 @@ enum AvailableLang {
 const TranslateContext = createContext({
     lang: AvailableLang,
     changeLang: (newLang: AvailableLang) => {
+
     },
-    trans: (key: LangKey) => {
-    },
+    trans: (key: LangKey) => '',
 });
 
 export const WithTranslateContext = ({ children }: { children: Children }) => {
@@ -37,7 +37,7 @@ export const WithTranslateContext = ({ children }: { children: Children }) => {
         storage.set(langToChangeTo);
     }, []);
 
-    const trans = useCallback((key: LangKey) => {
+    const trans = useCallback((key: LangKey): string => {
         switch (lang) {
             case AvailableLang.en:
                 return en?.[key] || key;
