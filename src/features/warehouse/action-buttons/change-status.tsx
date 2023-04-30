@@ -5,7 +5,7 @@ import { useTranslateContext } from '../../../contexts/translate.context';
 import { useDebounce } from '../../../hooks/debounce.hook';
 import { Button } from '../../shared-ui/buttons/button';
 import { Modal } from '../../shared-ui/modal/modal';
-import { ExistingPackageList } from './existing-package-list';
+import { StatusOptions } from './status-options';
 
 export const ChangeStatus = ({ warehouseId }: { warehouseId: string }) => {
     const { trans } = useTranslateContext();
@@ -28,11 +28,11 @@ export const ChangeStatus = ({ warehouseId }: { warehouseId: string }) => {
         wrapperClass={'w-100'}
         show={show}
         className={'border-radius-px-5 p-15'}
-        content={<ExistingPackageList onSuccess={handleOnSuccess} warehouseId={warehouseId}/>}
+        content={<StatusOptions onSuccess={handleOnSuccess} warehouseId={warehouseId}/>}
         size={{ sm: 90, md: 72, lg: 40, xl: 30 }}
-        header={<h2 className={'fs-30 text-align-center'}>{trans('send.packages')}</h2>}
+        header={<h2 className={'fs-30 text-align-center'}>{trans('change.status')}</h2>}
         trigger={<Button className={'w-100'} buttonStyle={'action'}>
-            <span className={'color-light-1 fs-14'}>{trans('send.packages')}</span>
+            <span className={'color-light-1 fs-14'}>{trans('change.status')}</span>
         </Button>}
     />;
 };

@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { useState } from 'react';
 
-export interface DeleteWarehouseOptions {
+export interface ChangeStatusOptions {
     id: string;
-    deleteType: 'temporary-closed' | 'permanently-closed';
+    statusType: 'temporary-closed' | 'permanently-closed' | 'open';
     transferWarehouseId: string;
 }
 
@@ -50,11 +50,11 @@ export const useClient = () => {
         }
     };
 
-    const transferProduct = async ({ id, warehouseId }: { id: string; warehouseId: string }) => {
+    const transferProduct = async (data: { cart: Record<string, number>; toWarehouseId: string }) => {
         try {
             setIsLoading(true);
 
-            const response = await axios.put(`${endpoint}/products/transfer/${id}`, { warehouseId });
+            const response = await axios.put(`${endpoint}/products/transfer`, data);
 
             return response.data?.payload;
         } catch (e) {
@@ -83,6 +83,19 @@ export const useClient = () => {
             setIsLoading(true);
 
             const response = await axios.get(`${endpoint}/warehouses`);
+            return response.data?.payload;
+        } catch (e) {
+            throw e?.response?.data?.error || 'generic.error';
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const getAvailableWarehouses = async () => {
+        try {
+            setIsLoading(true);
+
+            const response = await axios.get(`${endpoint}/warehouses/available-warehouses`);
             return response.data?.payload;
         } catch (e) {
             throw e?.response?.data?.error || 'generic.error';
@@ -131,11 +144,11 @@ export const useClient = () => {
         }
     };
 
-    const changeWarehouseStatus = async ({ id, newStatus, transferWarehouseId }: DeleteWarehouseOptions) => {
+    const changeWarehouseStatus = async ({ id, statusType, transferWarehouseId }: ChangeStatusOptions) => {
         try {
             setIsLoading(true);
 
-            const response = await axios.put(`${endpoint}/warehouses/change-status/${id}`, { newStatus, transferWarehouseId });
+            const response = await axios.put(`${endpoint}/warehouses/change-status/${id}`, { statusType, transferWarehouseId });
 
             return response.data?.payload;
         } catch (e) {
@@ -155,6 +168,7 @@ export const useClient = () => {
         getWarehouse,
         sendProducts,
         transferProduct,
+        getAvailableWarehouses,
         isLoading,
     };
 };

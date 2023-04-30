@@ -45,7 +45,7 @@ export const Status = ({ data, capacity }: { data?: Warehouse | undefined }) => 
     };
 
     return <div className={'display-flex justify-content-end'}>
-        <div className={'px-10'}>{renderStatusTag()}</div>
-        <div className={'px-10'}>{renderCapacityTag()}</div>
+        {renderCapacityTag()}
+        {renderStatusTag()}
     </div>;
 };

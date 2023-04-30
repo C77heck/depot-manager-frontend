@@ -30,9 +30,9 @@ export const TransferPackages = ({ warehouseId }: { warehouseId: string }) => {
         className={'border-radius-px-5 p-15'}
         content={<TransferPackageList onSuccess={handleOnSuccess} warehouseId={warehouseId}/>}
         size={{ sm: 90, md: 72, lg: 40, xl: 30 }}
-        header={<h2 className={'fs-30 text-align-center'}>{trans('send.packages')}</h2>}
+        header={<h2 className={'fs-30 text-align-center'}>{trans('transfer.packages')}</h2>}
         trigger={<Button className={'w-100'} buttonStyle={'action'}>
-            <span className={'color-light-1 fs-14'}>{trans('send.packages')}</span>
+            <span className={'color-light-1 fs-14'}>{trans('transfer.packages')}</span>
         </Button>}
     />;
 };

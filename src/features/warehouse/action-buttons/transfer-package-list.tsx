@@ -6,6 +6,7 @@ import { useClient } from '../../../hooks/client.hook';
 import { Button } from '../../shared-ui/buttons/button';
 import { SpinnerIcon } from '../../shared-ui/icons/icons';
 import { Product } from '../product-history/product-history-list';
+import { AvailableWarehouses } from './available-warehouses';
 import { Option } from './option';
 
 export interface PackageOptionsProps {
@@ -19,9 +20,10 @@ export interface ExistingProduct extends Product {
 
 export const TransferPackageList = ({ onSuccess, warehouseId }: PackageOptionsProps) => {
     const { trans } = useTranslateContext();
-    const { isLoading, sendProducts, getWarehouse } = useClient();
+    const { isLoading, transferProduct, getWarehouse } = useClient();
     const [cart, setCart] = useState({});
     const [products, setProducts] = useState<ExistingProduct[]>([]);
+    const [transferWarehouseId, setTransferWarehouseId] = useState<string>('');
 
     useEffect(() => {
         (async () => {
@@ -84,7 +86,7 @@ export const TransferPackageList = ({ onSuccess, warehouseId }: PackageOptionsPr
 
     const handleSubmit = async () => {
         try {
-            await sendProducts({ cart });
+            await transferProduct({ cart, toWarehouseId: transferWarehouseId });
             toast(trans('success'), { type: 'success' });
             onSuccess();
         } catch (e) {
@@ -108,8 +110,16 @@ export const TransferPackageList = ({ onSuccess, warehouseId }: PackageOptionsPr
                 </div>
             )}
         </div>
+
         <div className={'w-100 center pb-30'}>
             <div className={'max-width-30 w-100'}>
+                <div className={'pb-30'}>
+                    <AvailableWarehouses
+                        onPick={(id) => setTransferWarehouseId(id)}
+                        currentWarehouseId={warehouseId}
+                    />
+                </div>
+
                 <Button
                     isLoading={isLoading}
                     onClick={handleSubmit}

@@ -31,6 +31,7 @@
 
     .status-wrapper {
         &--yellow {
+            margin: 0 10px;
             width: fit-content;
             padding: 5px 1rem;
             border-radius: 4px;
@@ -47,6 +48,7 @@
         }
 
         &--grey {
+            margin: 0 10px;
             width: fit-content;
             padding: 5px 1rem;
             border-radius: 4px;
@@ -63,6 +65,7 @@
         }
 
         &--green {
+            margin: 0 10px;
             width: fit-content;
             padding: 5px 1rem;
             border-radius: 4px;
@@ -79,6 +82,7 @@
         }
 
         &--orange {
+            margin: 0 10px;
             width: fit-content;
             padding: 6px 1rem;
             border-radius: 4px;
@@ -95,6 +99,7 @@
         }
 
         &--red {
+            margin: 0 10px;
             width: fit-content;
             padding: 5px 1rem;
             border-radius: 4px;
