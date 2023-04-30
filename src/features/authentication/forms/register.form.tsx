@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { FormEvent, useState } from 'react';
+import { toast } from 'react-toastify';
 import { useAuthContext, UserRegistrationProps } from '../../../contexts/auth.context';
 import { useTranslateContext } from '../../../contexts/translate.context';
 import { useForm } from '../../../hooks/form.hook';
@@ -47,14 +48,17 @@ export const RegisterForm = (props: FormProps) => {
 
     const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        try {
+            if (!isFormValid) {
+                return setValidate(!validate);
+            }
 
-        if (!isFormValid) {
-            return setValidate(!validate);
+            await register(payload as UserRegistrationProps);
+            toast(trans('success'), { type: 'success' });
+            props.onSuccess();
+        } catch (e) {
+            toast(e, { type: 'success' });
         }
-
-        await register(payload as UserRegistrationProps);
-
-        props.onSuccess();
     };
 
     return <div>

@@ -66,7 +66,6 @@ export const WithAuthContext = ({ children }: { children: Children }) => {
             setIsLoading(true);
 
             const response = await axios.post(`${endpoint}/login`, data);
-
             const token = response.data?.payload?.token;
             const userId = response.data?.payload?.userId;
             const expiry = Date.now() + 1000 * 60 * 60 * 24;
@@ -77,7 +76,7 @@ export const WithAuthContext = ({ children }: { children: Children }) => {
 
             return response.data?.payload;
         } catch (e) {
-            setError(e);
+            throw e?.response?.data?.error || 'generic.error';
         } finally {
             setIsLoading(false);
         }
@@ -88,13 +87,17 @@ export const WithAuthContext = ({ children }: { children: Children }) => {
             setIsLoading(true);
 
             const response = await axios.post(`${endpoint}/register`, data);
-
-            setUserId(response.data?.payload?.userId);
-            setToken(response.data?.payload?.token);
+            const token = response.data?.payload?.token;
+            const userId = response.data?.payload?.userId;
+            const expiry = Date.now() + 1000 * 60 * 60 * 24;
+            setUserId(userId);
+            setToken(token);
+            setIsLoggedIn(true);
+            storage.set({ token, userId, expiry });
 
             return response.data?.payload;
         } catch (e) {
-            setError(e);
+            throw e?.response?.data?.error || 'generic.error';
         } finally {
             setIsLoading(false);
         }
@@ -106,7 +109,7 @@ export const WithAuthContext = ({ children }: { children: Children }) => {
 
             const response = await await axios.get(`${endpoint}/whoami`, { headers: { Authorization: `Bearer ${token}` } });
         } catch (e) {
-            setError(e);
+            throw e?.response?.data?.error || 'generic.error';
         } finally {
             setIsLoading(false);
         }
@@ -120,7 +123,7 @@ export const WithAuthContext = ({ children }: { children: Children }) => {
 
             return response.data?.payload;
         } catch (e) {
-            setError(e);
+            throw e?.response?.data?.error || 'generic.error';
         } finally {
             setIsLoading(false);
         }
@@ -134,7 +137,7 @@ export const WithAuthContext = ({ children }: { children: Children }) => {
 
             return response.data?.payload;
         } catch (e) {
-            setError(e);
+            throw e?.response?.data?.error || 'generic.error';
         } finally {
             setIsLoading(false);
         }
@@ -148,7 +151,7 @@ export const WithAuthContext = ({ children }: { children: Children }) => {
             setUserId('');
             storage.clear();
         } catch (e) {
-            setError(e);
+            throw e?.response?.data?.error || 'generic.error';
         } finally {
             setIsLoading(false);
         }

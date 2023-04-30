@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { FormEvent, useState } from 'react';
+import { toast } from 'react-toastify';
 import { useAuthContext, UserProps } from '../../../contexts/auth.context';
 import { useTranslateContext } from '../../../contexts/translate.context';
 import { useForm } from '../../../hooks/form.hook';
@@ -10,7 +11,7 @@ import { requiredValidator } from '../../shared-ui/inputs/validators/required.va
 import { FormProps } from './register.form';
 
 export const LoginForm = (props: FormProps) => {
-    const { login, error, isLoading } = useAuthContext();
+    const { login, isLoading } = useAuthContext();
     const { trans } = useTranslateContext();
     const [validate, setValidate] = useState(false);
     const { inputHandler, payload, isFormValid, fields } = useForm({
@@ -29,14 +30,18 @@ export const LoginForm = (props: FormProps) => {
 
     const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        try {
 
-        if (!isFormValid) {
-            return setValidate(!validate);
+            if (!isFormValid) {
+                return setValidate(!validate);
+            }
+
+            await login(payload as UserProps);
+            toast(trans('success'), { type: 'success' });
+            props.onSuccess();
+        } catch (e) {
+            toast(e, { type: 'error' });
         }
-
-        await login(payload as UserProps);
-
-        props.onSuccess();
     };
 
     return <div>

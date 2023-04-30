@@ -46,7 +46,7 @@ export const ProductHistory = ({ data }: { data: History }) => {
                         <h4 className={'color-transfer-1 fs-16'}>{data?.from?.name}</h4>
                     </div>
                     <div className={'col-4 center'}>
-                        <RightArrow className={'color-transfer-1'} width={25}/>
+                        <RightArrow className={'color-transfer-1'} width={20}/>
                     </div>
                     <div className={'col-10 display-flex justify-content-end'}>
                         <h4 className={'color-transfer-1 fs-16'}>{data?.to?.name}</h4>

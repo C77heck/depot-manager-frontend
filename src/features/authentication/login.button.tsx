@@ -43,7 +43,7 @@ export const LoginButton = () => {
             ? <RegisterForm onSuccess={() => setShow(false)} onClick={() => setIsRegister(false)}/>
             : <LoginForm onSuccess={() => setShow(false)} onClick={() => setIsRegister(true)}/>}
         size={{ sm: 90, md: 72, lg: 40, xl: 30 }}
-        header={<h2 className={'fs-30 text-align-center'}>{trans(isRegister ? 'login' : 'register')}</h2>}
+        header={<h2 className={'fs-30 text-align-center'}>{trans(isRegister ? 'register' : 'login')}</h2>}
         trigger={<button className={'center nav-bar-item bgc-primary-1 hover-scale'}>
             <LoginIcon className={'center color-light-1'} width={25}/>
         </button>}
