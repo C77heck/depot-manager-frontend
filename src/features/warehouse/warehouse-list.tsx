@@ -1,0 +1,36 @@
+import { useEffect, useState } from 'react';
+import { useResourceRefresherContext } from '../../contexts/resource-refresher.context';
+import { useTranslateContext } from '../../contexts/translate.context';
+import { useClient } from '../../hooks/client.hook';
+import { WarehouseItem } from './warehouse-item';
+
+export interface Warehouse {
+    _id: string;
+    name: string;
+    status: 'open' | 'temporary-closed' | 'permanently-closed' | undefined;
+    maximumCapacity: number;
+    capacityUtilization: number;
+    availableCapacity: number;
+}
+
+export const WarehouseList = () => {
+    const { getResources, getWarehouses } = useClient();
+    const [warehouses, setWarehouses] = useState<Warehouse[]>([]);
+    const { trans } = useTranslateContext();
+    const { refresh } = useResourceRefresherContext();
+
+    useEffect(() => {
+        console.log({ triggering: refresh });
+        (async () => getResources())();
+        (async () => setWarehouses(await getWarehouses()))();
+    }, [refresh]);
+
+    return <div className={'row'}>
+        <div className={'col-24 center'}>
+            <h1 className={'fs-50 mb-34'}>{trans('warehouses')}</h1>
+        </div>
+        {warehouses?.map(warehouse => <div key={warehouse._id} className={'col-md-12 col-24 center'}>
+            <WarehouseItem data={warehouse}/>
+        </div>)}
+    </div>;
+};

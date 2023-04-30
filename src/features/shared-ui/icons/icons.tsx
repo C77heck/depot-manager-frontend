@@ -77,6 +77,39 @@ export const LoginIcon = (props: IconProps) => {
     </div>;
 };
 
+export const ViewDetailsIcon = (props: IconProps) => {
+    return <div
+        className={`${props.className}`}
+        onClick={props.onClick}
+    >
+        <svg fill="currentColor" className={`w-px-${props.width}`} viewBox="0 0 16 16">
+            <path fillRule="evenodd" clipRule="evenodd"
+                  d="M0 4.59613V4.60917V5.03217V6.0239C0 6.39632 0.392549 6.63803 0.725094 6.47037L1.61065 6.0239L1.98836 5.83347L2 5.82761L3.4037 5.11991L3.47443 5.08425L4.13583 4.75079L4.73945 4.44647C5.10599 4.26167 5.10599 3.73833 4.73945 3.55353L4.13583 3.24921L3.47443 2.91576L3.4037 2.8801L2 2.1724L1.98836 2.16653L1.61065 1.9761L0.725095 1.52963C0.392549 1.36197 0 1.60368 0 1.9761V2.96784V2.96784V3.39084V3.40387V4.59613ZM9 3C8.44772 3 8 3.44772 8 4C8 4.55229 8.44772 5 9 5H14V12H4V9C4 8.44772 3.55228 8 3 8C2.44772 8 2 8.44772 2 9V12C2 13.1046 2.89543 14 4 14H14C15.1046 14 16 13.1046 16 12V5C16 3.89543 15.1046 3 14 3H9ZM5 7C5 6.44772 5.44772 6 6 6H12C12.5523 6 13 6.44772 13 7C13 7.55229 12.5523 8 12 8H6C5.44772 8 5 7.55229 5 7ZM6 9C5.44772 9 5 9.44772 5 10C5 10.5523 5.44772 11 6 11H10C10.5523 11 11 10.5523 11 10C11 9.44772 10.5523 9 10 9H6Z"
+                  fill="#fffff"/>
+        </svg>
+    </div>;
+};
+
+export const AddIcon = (props: IconProps) => {
+    return <div
+        className={`${props.className}`}
+        onClick={props.onClick}
+    >
+        <svg fill="currentColor" className={`w-px-${props.width}`} version="1.1" id="Layer_1" viewBox="0 0 512 512" xml:space="preserve">
+<g>
+	<g>
+		<g>
+			<path
+                d="M438.251,0H320H192H73.749C33.088,0,0,33.088,0,73.749v364.501C0,478.912,33.088,512,73.749,512H192     c11.776,0,21.333-9.557,21.333-21.333s-9.557-21.333-21.333-21.333H73.749c-17.131,0-31.083-13.952-31.083-31.083V73.749     c0-17.131,13.952-31.083,31.083-31.083h96.917v106.667c0,7.872,4.331,15.104,11.264,18.816     c6.912,3.691,15.339,3.285,21.909-1.067L256,132.309l52.16,34.773c3.584,2.389,7.701,3.584,11.84,3.584     c3.456,0,6.912-0.832,10.069-2.517c6.933-3.712,11.264-10.944,11.264-18.816V42.667h96.917c17.131,0,31.083,13.952,31.083,31.083     v75.584c0,11.776,9.557,21.333,21.333,21.333c11.797,0,21.333-9.557,21.333-21.333V73.749C512,33.088,478.912,0,438.251,0z"/>
+            <path
+                d="M362.667,213.333c-82.347,0-149.333,66.987-149.333,149.333S280.32,512,362.667,512S512,445.013,512,362.667     S445.013,213.333,362.667,213.333z M426.667,384H384v42.667c0,11.776-9.557,21.333-21.333,21.333s-21.333-9.557-21.333-21.333     V384h-42.667c-11.776,0-21.333-9.557-21.333-21.333s9.557-21.333,21.333-21.333h42.667v-42.667     c0-11.776,9.557-21.333,21.333-21.333S384,286.891,384,298.667v42.667h42.667c11.776,0,21.333,9.557,21.333,21.333     S438.443,384,426.667,384z"/>
+		</g>
+	</g>
+</g>
+</svg>
+    </div>;
+};
+
 export const HomeIcon = (props: IconProps) => {
     return <div
         className={`${props.className}`}
@@ -98,6 +131,47 @@ export const LogoutIcon = (props: IconProps) => {
             <path d="M17.4399 14.62L19.9999 12.06L17.4399 9.5" stroke="#ffffff" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
             <path d="M9.76001 12.0601H19.93" stroke="#ffffff" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
             <path d="M11.76 20C7.34001 20 3.76001 17 3.76001 12C3.76001 7 7.34001 4 11.76 4" stroke="#ffffff" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" stroke-linejoin="round"/>
+        </svg>
+    </div>;
+};
+
+export const PlusIcon = (props: IconProps) => {
+    return <div
+        className={`${props.className}`}
+        onClick={props.onClick}
+    >
+        <svg className={`w-px-${props.width}`} viewBox="0 -0.5 21 21" version="1.1">
+            <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+                <g id="Dribbble-Light-Preview" transform="translate(-419.000000, -520.000000)" fill="#000000">
+                    <g id="icons" transform="translate(56.000000, 160.000000)">
+                        <path
+                            d="M374.55,369 L377.7,369 L377.7,371 L374.55,371 L374.55,374 L372.45,374 L372.45,371 L369.3,371 L369.3,369 L372.45,369 L372.45,366 L374.55,366 L374.55,369 Z M373.5,378 C368.86845,378 365.1,374.411 365.1,370 C365.1,365.589 368.86845,362 373.5,362 C378.13155,362 381.9,365.589 381.9,370 C381.9,374.411 378.13155,378 373.5,378 L373.5,378 Z M373.5,360 C367.70085,360 363,364.477 363,370 C363,375.523 367.70085,380 373.5,380 C379.29915,380 384,375.523 384,370 C384,364.477 379.29915,360 373.5,360 L373.5,360 Z"
+                            id="plus_circle-[#1441]">
+                        </path>
+                    </g>
+                </g>
+            </g>
+        </svg>
+    </div>;
+};
+
+export const MinusIcon = (props: IconProps) => {
+    return <div
+        className={`${props.className}`}
+        onClick={props.onClick}
+    >
+        <svg className={`w-px-${props.width}`} viewBox="0 -0.5 21 21" version="1.1">
+            <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+                <g id="Dribbble-Light-Preview" transform="translate(-99.000000, -600.000000)" fill="#000000">
+                    <g id="icons" transform="translate(56.000000, 160.000000)">
+                        <path
+                            d="M49.3,451 L57.7,451 L57.7,449 L49.3,449 L49.3,451 Z M53.5,458 C48.8674,458 45.1,454.411 45.1,450 C45.1,445.588 48.8674,442 53.5,442 C58.13155,442 61.9,445.588 61.9,450 C61.9,454.411 58.13155,458 53.5,458 L53.5,458 Z M53.5,440 C47.70085,440 43,444.477 43,450 C43,455.523 47.70085,460 53.5,460 C59.2981,460 64,455.523 64,450 C64,444.477 59.2981,440 53.5,440 L53.5,440 Z"
+                            id="minus_circle-[#1429]">
+
+                        </path>
+                    </g>
+                </g>
+            </g>
         </svg>
     </div>;
 };

@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { useTranslateContext } from '../../contexts/translate.context';
 import { AuthHandler } from '../../features/authentication/auth.handler';
 import { NavBar } from '../../features/navigation/navbar';
 
@@ -15,10 +14,7 @@ export interface ScreenProps {
 
 export const ScreenRoute = (props: ScreenRouteProps) => {
     const [ready, setReady] = useState(true);
-    const { lang } = useTranslateContext();
-
-    useEffect(() => console.log(lang), [lang]);
-
+    console.log({ router: props.route });
     return <Routes>
         <Route
             path={props.route}

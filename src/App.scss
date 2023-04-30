@@ -6,6 +6,7 @@
 @import "features/navigation/navbar";
 @import "features/shared-ui/buttons/button";
 @import "features/shared-ui/inputs/input";
+@import "features/warehouse/warehouse";
 
 @include Helpers($lg, $xl, $md, $sm, $colours);
 @include Fonts();
@@ -13,3 +14,4 @@
 @include Button($colours);
 @include Navbar($colours);
 @include Input($colours);
+@include Warehouse($colours);

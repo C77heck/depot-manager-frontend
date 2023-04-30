@@ -9,7 +9,7 @@
         cursor: pointer;
         background-color: var(--color-primary-1);
         color: #ffffff;
-        border-radius: 0.7rem;
+        border-radius: 8px;
 
         & div span {
             font-weight: bold;
@@ -54,6 +54,21 @@
                 &:hover {
                     color: map-get-deep($colours, 'primary', 1);
                 }
+            }
+        }
+
+        &--action {
+            width: 100%;
+            height: 3.2rem;
+            background-color: map-get-deep($colours, 'primary', 1);
+
+            & span {
+                transition: color 280ms ease-in-out;
+                color: map-get-deep($colours, 'light', 1);
+            }
+
+            &:hover {
+                background-color: map-get-deep($colours, 'primary', 2);
             }
         }
     }

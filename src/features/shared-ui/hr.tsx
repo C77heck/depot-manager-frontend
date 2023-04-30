@@ -5,8 +5,8 @@ interface HrProps {
     className?: string;
 }
 
-export const Hr = ({ type }: HrProps) => {
+export const Hr = ({ type, className }: HrProps) => {
     const typeClass = type ? `hr--${type}` : 'hr--normal';
 
-    return <div className={`${this.props.className ?? ''} ${typeClass}`}/>;
+    return <div className={`${className ?? ''} ${typeClass}`}/>;
 };

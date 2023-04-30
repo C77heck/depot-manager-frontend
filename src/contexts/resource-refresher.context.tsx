@@ -1,4 +1,4 @@
-import { createContext, useCallback, useContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 import { Children } from './auth.context';
 
 const ResourceRefresherContext = createContext({
@@ -10,9 +10,7 @@ const ResourceRefresherContext = createContext({
 export const WithResourceRefresherContext = ({ children }: { children: Children }) => {
     const [refresh, setRefresh] = useState(false);
 
-    const triggerRefresh = useCallback(() => {
-        setRefresh(!refresh);
-    }, []);
+    const triggerRefresh = () => setRefresh(!refresh);
 
     return <ResourceRefresherContext.Provider value={{ refresh, triggerRefresh }}>
         {children}

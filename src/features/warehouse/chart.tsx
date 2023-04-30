@@ -100,22 +100,6 @@ export interface ColourInterface {
     backgroundColor: string;
 }
 
-export const COLOURS: { genderColours: ColourInterface[], baseColours: ColourInterface[] } = {
-    genderColours: [
-        { borderColor: '#EF6BA4', backgroundColor: '#EF6BA4' },
-        { borderColor: '#2995F8', backgroundColor: '#2995F8' },
-        { borderColor: '#FE938C', backgroundColor: 'transparent' },
-        { borderColor: '#6CD4FF', backgroundColor: 'transparent' },
-        { borderColor: '#d5d07c', backgroundColor: '#d5d07c' },
-    ],
-    baseColours: [
-        { borderColor: '#7259B5', backgroundColor: '#E3DEF0' },
-        { borderColor: 'rgb(77,177,222)', backgroundColor: 'rgba(32,156,238,0.5)' },
-        { borderColor: 'rgb(29,238,187)', backgroundColor: 'rgba(113,243,172,0.5)' },
-        { borderColor: '#7259B5', backgroundColor: 'transparent' },
-    ]
-};
-
 export interface GraphProps {
     data: number[];
     labels?: string[];
@@ -132,8 +116,6 @@ export interface GraphProps {
 }
 
 export class Chart extends React.Component<GraphProps, ChartStateProps> {
-    public colours = COLOURS.baseColours;
-    public averageColors = COLOURS.genderColours;
     public state = { data: datasets };
 
     public componentDidMount() {
@@ -147,7 +129,7 @@ export class Chart extends React.Component<GraphProps, ChartStateProps> {
     }
 
     public setChartData() {
-        const colours = this.props?.customBarColours ? this.props.customBarColours : this.getColourByGender();
+        const colours = { borderColor: '#58b7cc', backgroundColor: '#3c9173' };
 
         this.setState({
             data: {
@@ -160,31 +142,21 @@ export class Chart extends React.Component<GraphProps, ChartStateProps> {
         });
     }
 
-    public getColourByGender() {
-        switch (this.props.user?.gender) {
-            case 'account.edit.gender.female':
-                return this.averageColors[0];
-            case 'account.edit.gender.male':
-                return this.averageColors[1];
-            default:
-                return this.averageColors[2];
-        }
-    }
-
     public getOptions() {
-        const baseColour = this.props.colorIndex ? this.colours[this.props.colorIndex] : this.colours[0];
         const barThickness = this.props.barThickness ? { barThickness: 30 } : {};
         const hideVerticalLines = this.props.hideVertical ? { x: { grid: { display: false } } } : {};
 
         const blockOptions = {
             ...options,
-            ...baseColour,
             ...barThickness,
             scales: {
                 ...options.scales,
                 ...hideVerticalLines
             }
         };
+
+        blockOptions.plugins.legend = { display: false };
+        blockOptions.plugins = { ...blockOptions.plugins, legend: { display: false } };
 
         if (this.props.title) {
             blockOptions.plugins = {
@@ -202,7 +174,6 @@ export class Chart extends React.Component<GraphProps, ChartStateProps> {
     public render() {
         const labels = this.props?.labels;
         const datasets = [this.state.data];
-        const chartWrapper = 'min-height-300';
         const blockOptions = this.getOptions();
         console.log({
             labels, datasets
@@ -213,7 +184,7 @@ export class Chart extends React.Component<GraphProps, ChartStateProps> {
                 return <Line data={{ labels, datasets } as ChartData<any, any, any>} options={blockOptions}/>;
             case 'Bar':
                 // todo make it double
-                return <div style={{ height: 400 }}>
+                return <div style={{ height: 270 }}>
                     <Bar data={{ labels, datasets } as ChartData<any, any, any>} options={blockOptions}/>
                 </div>;
             case 'Pie':
