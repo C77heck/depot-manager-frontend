@@ -223,7 +223,7 @@
         }
     }
 
-    .active-lift{
+    .active-lift {
         &:active {
             transform: translateY(1px);
         }
@@ -406,21 +406,21 @@
         .bgc-#{$l1-key} {
             @each $l2-key, $l2-value in $l1-value {
                 &-#{$l2-key} {
-                    background-color: $l2-value;
+                    background-color: $l2-value !important;
                 }
             }
         }
         .color-#{$l1-key} {
             @each $l2-key, $l2-value in $l1-value {
                 &-#{$l2-key} {
-                    color: $l2-value;
+                    color: $l2-value !important;
                 }
             }
         }
         .bc-#{$l1-key} {
             @each $l2-key, $l2-value in $l1-value {
                 &-#{$l2-key} {
-                    border-color: $l2-value;
+                    border-color: $l2-value !important;
                 }
             }
         }

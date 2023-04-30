@@ -1,4 +1,5 @@
 import { useTranslateContext } from '../../../contexts/translate.context';
+import { Warehouse } from '../warehouse-list';
 import { ProductHistory } from './product-history';
 
 export interface Product {
@@ -18,8 +19,10 @@ export interface Product {
 
 export interface History {
     _id: string;
+    createdAt: Date;
     type: 'arrived' | 'transferred' | 'sent';
-    details: object;
+    from?: Warehouse;
+    to?: Warehouse;
     product: Product;
 }
 
@@ -38,7 +41,7 @@ export const ProductHistoryList = ({ histories }: ProductHistoryProps) => {
     }
 
     return <div className={'row bgc-light-1 border-radius-px-4 box-shadow h-100 p-16'}>
-        <h2 className={'color-dark-2 fs-30 fw--700 mb-27'}>{trans('history')}</h2>
+        <h2 className={'color-dark-2 fs-30 fw--700 mb-20'}>{trans('history')}</h2>
 
         {histories?.map(history => <ProductHistory key={history._id} data={history}/>)}
     </div>;
