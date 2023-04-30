@@ -7,7 +7,12 @@ import { Button } from '../../shared-ui/buttons/button';
 import { Modal } from '../../shared-ui/modal/modal';
 import { StatusOptions } from './status-options';
 
-export const ChangeStatus = ({ warehouseId }: { warehouseId: string }) => {
+export interface ActionButtonProps {
+    warehouseId: string;
+    disabled: boolean;
+}
+
+export const ChangeStatus = ({ warehouseId, disabled }: ActionButtonProps) => {
     const { trans } = useTranslateContext();
     const [show, setShow] = useState(true);
     const debounce = useDebounce(() => setShow(true), 1000);
@@ -23,6 +28,12 @@ export const ChangeStatus = ({ warehouseId }: { warehouseId: string }) => {
         triggerRefresh();
         setShow(false);
     };
+
+    if (disabled) {
+        return <Button className={'w-100'} buttonStyle={'disabled'}>
+            <span className={'color-light-1 fs-14'}>{trans('change.status')}</span>
+        </Button>;
+    }
 
     return <Modal
         wrapperClass={'w-100'}

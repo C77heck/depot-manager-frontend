@@ -5,9 +5,10 @@ import { useTranslateContext } from '../../../contexts/translate.context';
 import { useDebounce } from '../../../hooks/debounce.hook';
 import { Button } from '../../shared-ui/buttons/button';
 import { Modal } from '../../shared-ui/modal/modal';
+import { ActionButtonProps } from './change-status';
 import { ExistingPackageList } from './existing-package-list';
 
-export const SendPackages = ({ warehouseId }: { warehouseId: string }) => {
+export const SendPackages = ({ warehouseId, disabled }: ActionButtonProps) => {
     const { trans } = useTranslateContext();
     const [show, setShow] = useState(true);
     const debounce = useDebounce(() => setShow(true), 1000);
@@ -23,6 +24,12 @@ export const SendPackages = ({ warehouseId }: { warehouseId: string }) => {
         triggerRefresh();
         setShow(false);
     };
+
+    if (disabled) {
+        return <Button className={'w-100'} buttonStyle={'disabled'}>
+            <span className={'color-light-1 fs-14'}>{trans('send.packages')}</span>
+        </Button>;
+    }
 
     return <Modal
         wrapperClass={'w-100'}

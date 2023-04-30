@@ -16,7 +16,7 @@ export interface ScreenProps {
 }
 
 export const ScreenRoute = (props: ScreenRouteProps) => {
-    const [ready, setReady] = useState(true);
+    const [ready, setReady] = useState(false);
 
     return <Routes>
         <Route

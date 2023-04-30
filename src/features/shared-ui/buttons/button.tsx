@@ -4,7 +4,7 @@ import './button.scss';
 export interface ButtonProps {
     type?: 'button' | 'submit' | 'reset' | undefined;
     className?: string;
-    buttonStyle?: 'submit' | 'logout' | 'link' | 'action' | 'outline' | 'full';
+    buttonStyle?: 'submit' | 'link' | 'action' | 'outline' | 'full' | 'disabled';
     name?: string;
     id?: string;
     disabled?: boolean;
@@ -43,8 +43,8 @@ const getButtonType = (type: string) => {
             return 'button button--outline';
         case 'full':
             return 'button button--full';
-        case 'logout':
-            return 'button button--login';
+        case 'disabled':
+            return 'button button--disabled';
         default:
             return 'button';
     }
