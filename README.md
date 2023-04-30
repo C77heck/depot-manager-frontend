@@ -1,14 +1,12 @@
 # depot-manager-frontend
 
-To install run: npm install or yarn install;
+# Installation
+npm install;
+yarn install;
 
-# Available Scripts
-In the project directory, you can run:
-
-npm run start
+# run the project
+npm run start;
 Runs the app in development mode on port: 5173
-
-See the section about deployment for more information.
 
 # Acknowledgments
 Create React App - used for bootstrapping the project.

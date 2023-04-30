@@ -4,6 +4,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthHandler } from '../../features/authentication/auth.handler';
 import { NavBar } from '../../features/navigation/navbar';
+import { Spinner } from '../../features/shared-ui/spinner/spinner';
 
 export interface ScreenRouteProps extends ScreenProps {
     children: any;
@@ -23,7 +24,7 @@ export const ScreenRoute = (props: ScreenRouteProps) => {
             element={!ready
                 ? <div className={'screen-view center'}>
                     <div className={'w-20'}>
-                        {/*<Spinner onComplete={() => setReady(true)}/>*/}
+                        <Spinner onComplete={() => setReady(true)}/>
                     </div>
                 </div>
                 : <div className={'screen-view p-20 pt-170 display-flex justify-content-center'}>

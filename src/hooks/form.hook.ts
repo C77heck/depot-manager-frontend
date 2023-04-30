@@ -28,7 +28,7 @@ export const useForm = (options: FormOptions) => {
         });
 
         setPayload(() => {
-            const data: object = {};
+            const data: any = {};
             for (const key of Object.keys(fields)) {
                 data[key] = fields[key]?.value || '';
             }
