@@ -21,7 +21,6 @@ export type UpdateWarehouseOptions = { id: string } & CreateWarehouseOptions;
 
 export const useClient = () => {
     const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState('');
     const endpoint = import.meta.env.VITE_API_ENDPOINT;
     const getResources = async () => {
         try {
@@ -31,7 +30,7 @@ export const useClient = () => {
 
             return response.data?.payload;
         } catch (e) {
-            setError(e);
+            throw e?.response?.data?.error || 'generic.error';
         } finally {
             setIsLoading(false);
         }
@@ -45,7 +44,7 @@ export const useClient = () => {
 
             return response.data?.payload;
         } catch (e) {
-            setError(e);
+            throw e?.response?.data?.error || 'generic.error';
         } finally {
             setIsLoading(false);
         }
@@ -59,21 +58,21 @@ export const useClient = () => {
 
             return response.data?.payload;
         } catch (e) {
-            setError(e);
+            throw e?.response?.data?.error || 'generic.error';
         } finally {
             setIsLoading(false);
         }
     };
 
-    const sendProduct = async ({ id }: { id: string }) => {
+    const sendProducts = async ({ cart }: { cart: Record<string, number> }) => {
         try {
             setIsLoading(true);
 
-            const response = await axios.put(`${endpoint}/products/transfer/${id}`, {});
+            const response = await axios.put(`${endpoint}/products/send`, { cart });
 
             return response.data?.payload;
         } catch (e) {
-            setError(e);
+            throw e?.response?.data?.error || 'generic.error';
         } finally {
             setIsLoading(false);
         }
@@ -86,7 +85,7 @@ export const useClient = () => {
             const response = await axios.get(`${endpoint}/warehouses`);
             return response.data?.payload;
         } catch (e) {
-            setError(e);
+            throw e?.response?.data?.error || 'generic.error';
         } finally {
             setIsLoading(false);
         }
@@ -99,7 +98,7 @@ export const useClient = () => {
 
             return response.data?.payload;
         } catch (e) {
-            setError(e);
+            throw e?.response?.data?.error || 'generic.error';
         } finally {
             setIsLoading(false);
         }
@@ -112,7 +111,7 @@ export const useClient = () => {
 
             return response.data?.payload;
         } catch (e) {
-            setError(e);
+            throw e?.response?.data?.error || 'generic.error';
         } finally {
             setIsLoading(false);
         }
@@ -126,7 +125,7 @@ export const useClient = () => {
 
             return response.data?.payload;
         } catch (e) {
-            setError(e);
+            throw e?.response?.data?.error || 'generic.error';
         } finally {
             setIsLoading(false);
         }
@@ -140,14 +139,22 @@ export const useClient = () => {
 
             return response.data?.payload;
         } catch (e) {
-            setError(e);
+            throw e?.response?.data?.error || 'generic.error';
         } finally {
             setIsLoading(false);
         }
     };
 
     return {
-        getResources, createProduct, getWarehouses, createWarehouse, updateWarehouse, changeWarehouseStatus, getWarehouse, sendProduct, transferProduct,
-        isLoading, error,
+        getResources,
+        createProduct,
+        getWarehouses,
+        createWarehouse,
+        updateWarehouse,
+        changeWarehouseStatus,
+        getWarehouse,
+        sendProducts,
+        transferProduct,
+        isLoading,
     };
 };

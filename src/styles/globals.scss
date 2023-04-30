@@ -13,8 +13,8 @@ $colours: (
         3: rgba(77, 196, 238, 0.46),
     ),
     secondary: (
-        1: #f3e547,
-        2: rgba(243, 229, 71, 0.21),
+        1: #de991a,
+        2: rgba(222, 153, 26, 0.25),
     ),
     light: (
         1: #ffffff,
@@ -47,8 +47,8 @@ $colours: (
         2: rgba(93, 229, 100, 0.27)
     ),
     sent:(
-        1: #e5f55b,
-        2: rgba(229, 245, 91, 0.3)
+        1: #666e26,
+        2: rgba(102, 110, 38, 0.3)
     ),
 );
 
@@ -77,4 +77,8 @@ html {
     @media screen and (max-width: 68.75em) {
         font-size: 58%;
     }
+}
+
+.base-layout-width {
+    max-width: 130rem;
 }

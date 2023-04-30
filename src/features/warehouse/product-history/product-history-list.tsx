@@ -17,6 +17,7 @@ export interface Product {
 }
 
 export interface History {
+    _id: string;
     type: 'arrived' | 'transferred' | 'sent';
     details: object;
     product: Product;
@@ -39,6 +40,6 @@ export const ProductHistoryList = ({ histories }: ProductHistoryProps) => {
     return <div className={'row bgc-light-1 border-radius-px-4 box-shadow h-100 p-16'}>
         <h2 className={'color-dark-2 fs-30 fw--700 mb-27'}>{trans('history')}</h2>
 
-        {histories?.map(history => <ProductHistory data={history}/>)}
+        {histories?.map(history => <ProductHistory key={history._id} data={history}/>)}
     </div>;
 };

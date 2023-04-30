@@ -30,6 +30,38 @@
     }
 
     .status-wrapper {
+        &--yellow {
+            width: fit-content;
+            padding: 5px 1rem;
+            border-radius: 4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid map-get-deep($colours, 'sent', 1);
+            background-color: map-get-deep($colours, 'sent', 2);
+
+            & span {
+                font-size: 13px;
+                color: map-get-deep($colours, 'sent', 1);
+            }
+        }
+
+        &--grey {
+            width: fit-content;
+            padding: 5px 1rem;
+            border-radius: 4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid map-get-deep($colours, 'dark', 2);
+            background-color: map-get-deep($colours, 'dark', 3);
+
+            & span {
+                font-size: 13px;
+                color: map-get-deep($colours, 'dark', 2);
+            }
+        }
+
         &--green {
             width: fit-content;
             padding: 5px 1rem;

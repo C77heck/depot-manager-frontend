@@ -20,7 +20,6 @@ export const WarehouseList = () => {
     const { refresh } = useResourceRefresherContext();
 
     useEffect(() => {
-        console.log({ triggering: refresh });
         (async () => getResources())();
         (async () => setWarehouses(await getWarehouses()))();
     }, [refresh]);

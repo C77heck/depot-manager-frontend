@@ -5,9 +5,9 @@ import { useTranslateContext } from '../../../contexts/translate.context';
 import { useDebounce } from '../../../hooks/debounce.hook';
 import { Button } from '../../shared-ui/buttons/button';
 import { Modal } from '../../shared-ui/modal/modal';
-import { PackageOptions } from './package-options';
+import { TransferPackageList } from './transfer-package-list';
 
-export const GetPackages = ({ warehouseId }: { warehouseId: string }) => {
+export const TransferPackages = ({ warehouseId }: { warehouseId: string }) => {
     const { trans } = useTranslateContext();
     const [show, setShow] = useState(true);
     const debounce = useDebounce(() => setShow(true), 1000);
@@ -28,11 +28,11 @@ export const GetPackages = ({ warehouseId }: { warehouseId: string }) => {
         wrapperClass={'w-100'}
         show={show}
         className={'border-radius-px-5 p-15'}
-        content={<PackageOptions onSuccess={handleOnSuccess} warehouseId={warehouseId}/>}
+        content={<TransferPackageList onSuccess={handleOnSuccess} warehouseId={warehouseId}/>}
         size={{ sm: 90, md: 72, lg: 40, xl: 30 }}
-        header={<h2 className={'fs-30 text-align-center'}>{trans('new.warehouse')}</h2>}
+        header={<h2 className={'fs-30 text-align-center'}>{trans('send.packages')}</h2>}
         trigger={<Button className={'w-100'} buttonStyle={'action'}>
-            <span className={'color-light-1 fs-14'}>{trans('get.packages')}</span>
+            <span className={'color-light-1 fs-14'}>{trans('send.packages')}</span>
         </Button>}
     />;
 };

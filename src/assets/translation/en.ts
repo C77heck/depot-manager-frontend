@@ -8,6 +8,7 @@ export default {
     'perm.closed': 'Permanently closed',
     package: 'Package',
     packages: 'Packages',
+    'send.packages': 'Send packages',
     charts: 'Charts',
     user: 'User',
     email: 'Email',
@@ -49,4 +50,20 @@ export default {
     'transfer.packages': 'Transfer packages',
     'change.status': 'Change status',
     'empty.list': 'Empty list',
+
+    'email.is.missing': 'Email is missing!',
+    'missing.session.id': 'Missing session id',
+    'user.not.found': 'User not found!',
+    'resource.not.found': 'resource not found!',
+    'generic.error': 'Something went wrong. Please try again later.',
+    'capacity.reached': 'Products cannot be transfered due to lack of capacity in the selected warehouse',
+    'invalid.token': 'Invalid token',
+    'expired.token': 'Expired token',
+    'failed.login': 'Login failed, please try again',
+    'too.many.attemmpts': 'You have made too many unsuccessful login attempts. Please wait for 3 minutes and try again.',
+    'invalid.login': 'Could not log you in, please check your credentials and try again',
+
+    'generic.success': 'Success',
+    'user.successfully.updated': 'User data has been successfully updated.',
+    'account.successfully.deleted': 'Account has been successfully deleted.',
 };

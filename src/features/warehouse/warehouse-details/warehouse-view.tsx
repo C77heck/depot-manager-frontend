@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useResourceRefresherContext } from '../../../contexts/resource-refresher.context';
 import { useClient } from '../../../hooks/client.hook';
 import { WarehouseActionsButtons } from '../action-buttons/warehouse-actions-buttons';
 import { History, ProductHistoryList } from '../product-history/product-history-list';
@@ -14,6 +15,7 @@ export interface IWarehouseDetails {
 export const WarehouseView = ({ id }: { id: string }) => {
     const { getWarehouse } = useClient();
     const [data, setData] = useState<IWarehouseDetails>(null);
+    const { refresh } = useResourceRefresherContext();
 
     useEffect(() => {
         (async () => {
@@ -21,15 +23,19 @@ export const WarehouseView = ({ id }: { id: string }) => {
 
             setData(results);
         })();
-    }, []);
+    }, [refresh]);
 
-    return <div>
+    if (!data) {
+        return null;
+    }
+
+    return <div className={''}>
         <div className={'row'}>
             <div className={'col-24 mb-50'}>
-                <WarehouseActionsButtons data={data?.warehouse}/>
+                <WarehouseActionsButtons data={data.warehouse}/>
             </div>
             <div className={'col-md-12 col-24 px-30 my-15'}>
-                <WarehouseDetails data={data?.warehouse}/>
+                <WarehouseDetails data={data?.warehouse} capacity={data?.capacityUtilization}/>
             </div>
             <div className={'col-md-12 col-24 px-30 my-15'}>
                 <ProductHistoryList histories={data?.histories || []}/>

@@ -175,9 +175,7 @@ export class Chart extends React.Component<GraphProps, ChartStateProps> {
         const labels = this.props?.labels;
         const datasets = [this.state.data];
         const blockOptions = this.getOptions();
-        console.log({
-            labels, datasets
-        });
+
         switch (this.props.chartName) {
             case 'Line':
                 // todo this is for the collective together

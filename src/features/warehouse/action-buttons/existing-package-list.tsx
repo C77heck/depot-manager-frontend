@@ -2,27 +2,47 @@ import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useTranslateContext } from '../../../contexts/translate.context';
-import { ProductCreateOptions, useClient } from '../../../hooks/client.hook';
+import { useClient } from '../../../hooks/client.hook';
 import { Button } from '../../shared-ui/buttons/button';
+import { SpinnerIcon } from '../../shared-ui/icons/icons';
 import { Product } from '../product-history/product-history-list';
 import { Option } from './option';
 
 export interface PackageOptionsProps {
     onSuccess: () => void;
-    warehouseId?: string;
+    warehouseId: string;
 }
 
-export const PackageOptions = ({ onSuccess, warehouseId }: PackageOptionsProps) => {
+export interface ExistingProduct extends Product {
+    limit: 0;
+}
+
+export const ExistingPackageList = ({ onSuccess, warehouseId }: PackageOptionsProps) => {
     const { trans } = useTranslateContext();
-    const { getResources, isLoading, createProduct } = useClient();
+    const { isLoading, sendProducts, getWarehouse } = useClient();
     const [cart, setCart] = useState({});
-    const [options, setOptions] = useState<Product[]>([]);
+    const [products, setProducts] = useState<ExistingProduct[]>([]);
 
     useEffect(() => {
         (async () => {
-            const response = await getResources();
+            const warehouse = await getWarehouse({ id: warehouseId });
 
-            setOptions(response?.resources);
+            const warehouseProducts = warehouse?.products;
+            const prods = {};
+            const uniqueProducts = {};
+            for (const prod of warehouseProducts) {
+                prods[prod.productId] = !prods[prod.productId] ? 1 : prods[prod.productId] + 1;
+                uniqueProducts[prod.productId] = prod;
+            }
+
+            const mergedProducts = Object.keys(uniqueProducts).map(key => {
+                const value = uniqueProducts[+key];
+                value.limit = prods[+key];
+
+                return value;
+            });
+
+            setProducts(mergedProducts);
         })();
     }, []);
 
@@ -50,7 +70,13 @@ export const PackageOptions = ({ onSuccess, warehouseId }: PackageOptionsProps) 
         });
     };
 
-    if (!options?.length) {
+    if (isLoading) {
+        return <div className={'w-100 center'}>
+            <SpinnerIcon className={'py-40'} width={45}/>
+        </div>;
+    }
+
+    if (!products?.length) {
         return <div className={'w-100 center'}>
             <h3 className={'color-dark-2 fs-15'}>{trans('empty.list')}</h3>
         </div>;
@@ -58,7 +84,7 @@ export const PackageOptions = ({ onSuccess, warehouseId }: PackageOptionsProps) 
 
     const handleSubmit = async () => {
         try {
-            await createProduct({ warehouseId, options: cart } as ProductCreateOptions);
+            await sendProducts({ cart });
             toast(trans('success'), { type: 'success' });
             onSuccess();
         } catch (e) {
@@ -68,15 +94,16 @@ export const PackageOptions = ({ onSuccess, warehouseId }: PackageOptionsProps) 
 
     return <div className={''}>
         <div className={'row mb-30 scrollable'}>
-            {options?.map(option => <div
+            {products?.map(product => <div
                     className={'col-8 p-10'}
-                    key={option?._id}
+                    key={product?._id}
                 >
                     <Option
+                        limit={product.limit}
                         cart={cart}
                         onAdd={(id) => handleOnAdd(id)}
                         onRemove={(id) => handleOnRemove(id)}
-                        data={option}
+                        data={product}
                     />
                 </div>
             )}

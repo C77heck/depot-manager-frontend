@@ -10,11 +10,11 @@ import './warehouse.scss';
 export const WarehouseItem = React.memo(({ data }: { data: Warehouse }) => {
     const { trans } = useTranslateContext();
     const chartData: number[] = [data.capacityUtilization, data.maximumCapacity, data.availableCapacity];
-
+    console.log(data);
     return <div className={'warehouse-box'}>
         <div className={'row mb-7'}>
             <div className={'col-12'}>
-                <Status status={data.status}/>
+                <Status data={data} capacity={data.capacityUtilization}/>
             </div>
             <div className={'col-12 display-flex justify-content-end'}>
                 <div className={'bgc-primary-2 p-6 border-radius-px-4 hover-opacity'}>
