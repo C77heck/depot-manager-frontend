@@ -10,6 +10,7 @@ export interface Depot {
     status: 'open' | 'temporary-closed' | 'permanently-closed';
     maximumCapacity: number;
     currentCapacity: number;
+    availableCapacity: number;
 }
 
 export const DepotList = () => {

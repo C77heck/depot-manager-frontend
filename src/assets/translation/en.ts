@@ -3,6 +3,7 @@ export default {
     logout: 'Logout',
     register: 'Register',
     depots: 'Depots',
+    state: 'State',
     package: 'Package',
     packages: 'Packages',
     charts: 'Charts',
@@ -22,6 +23,7 @@ export default {
     empty: 'Empty',
     'close.depot': 'Close depot',
     'max.capacity': 'Maximum capacity',
+    'available.capacity': 'Available capacity',
     'current.capacity': 'Current capacity',
     'first.name': 'First name',
     'last.name': 'Last name',
@@ -37,5 +39,5 @@ export default {
     'must.contain.uppercase': 'Must contain upper case letter(s)',
     'new.depot': 'New depot',
     'depot.name': 'Depot name',
-    'maximum.capacity': 'Depot maximum capacity',
+    'maximum.capacity': 'Maximum capacity',
 };
