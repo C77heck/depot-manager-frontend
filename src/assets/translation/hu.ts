@@ -68,4 +68,5 @@ export default {
     'generic.success': 'Sikeres',
     'user.successfully.updated': 'Felhasználói adatok sikeresen frissítve.',
     'account.successfully.deleted': 'Fiók sikeresen törölve.',
+    'available.warehouses': 'Választható raktárak'
 };

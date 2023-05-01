@@ -1,4 +1,6 @@
+import * as React from 'react';
 import { useEffect, useState } from 'react';
+import { useTranslateContext } from '../../../contexts/translate.context';
 import { useClient } from '../../../hooks/client.hook';
 import { Button } from '../../shared-ui/buttons/button';
 
@@ -12,7 +14,7 @@ export const AvailableWarehouses = ({ onFinish, onPick, currentWarehouseId }: Av
     const { getAvailableWarehouses } = useClient();
     const [warehouses, setWarehouses] = useState([]);
     const [active, setActive] = useState<string>('');
-
+    const { trans } = useTranslateContext();
     useEffect(() => onPick(active), [active]);
 
     useEffect(() => {
@@ -30,6 +32,7 @@ export const AvailableWarehouses = ({ onFinish, onPick, currentWarehouseId }: Av
     }
 
     return <div className={'w-100 display-flex'}>
+        <h2 className={'fs-30 text-align-center'}>{trans('available.warehouses')}</h2>
         {warehouses.map(warehouse => <div key={warehouse.name} className={'width-fit-content m-5'}>
             <Button
                 buttonStyle={warehouse._id === active ? 'full' : 'outline'}

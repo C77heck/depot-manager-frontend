@@ -40,7 +40,7 @@ export const ChangeStatus = ({ warehouseId, disabled }: ActionButtonProps) => {
         show={show}
         className={'border-radius-px-5 p-15'}
         content={<StatusOptions onSuccess={handleOnSuccess} warehouseId={warehouseId}/>}
-        size={{ sm: 90, md: 72, lg: 40, xl: 30 }}
+        size={{ sm: 100, md: 72, lg: 40, xl: 30 }}
         header={<h2 className={'fs-30 text-align-center'}>{trans('change.status')}</h2>}
         trigger={<Button className={'w-100'} buttonStyle={'action'}>
             <span className={'color-light-1 fs-14'}>{trans('change.status')}</span>

@@ -94,10 +94,10 @@ export const TransferPackageList = ({ onSuccess, warehouseId }: PackageOptionsPr
         }
     };
 
-    return <div className={''}>
+    return <div className={'scrollable'}>
         <div className={'row mb-30 scrollable'}>
             {products?.map(product => <div
-                    className={'col-8 p-10'}
+                    className={'col-md-8 col-12 p-10'}
                     key={product?._id}
                 >
                     <Option

@@ -66,10 +66,10 @@ export const PackageOptions = ({ onSuccess, warehouseId }: PackageOptionsProps) 
         }
     };
 
-    return <div className={''}>
-        <div className={'row mb-30 scrollable'}>
+    return <div className={'scrollable'}>
+        <div className={'row mb-30'}>
             {options?.map(option => <div
-                    className={'col-8 p-10'}
+                    className={'col-md-8 col-12 p-10'}
                     key={option?._id}
                 >
                     <Option
