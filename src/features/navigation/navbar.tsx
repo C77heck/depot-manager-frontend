@@ -1,5 +1,7 @@
 import * as React from 'react';
+import { useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
+import { delay, interval } from 'rxjs';
 import { useClient } from '../../hooks/client.hook';
 import { Constants } from '../../libs/constants';
 import { LoginButton } from '../authentication/login.button';
@@ -15,7 +17,17 @@ export const NavBar = (props: any) => {
     const isHome = pathname === '/';
     const sizeClass = isHome ? 'col-md-6 col-12 py-9' : 'col-md-8 col-12 py-9';
     const { createRandomProductSend } = useClient();
-    // todo finish this random send prod
+
+    useEffect(() => {
+        const interval$ = interval(5000)
+            .pipe(delay(Math.random() * 10000))
+            .subscribe(async () => {
+                console.log('got triggered');
+                await createRandomProductSend();
+            });
+
+        return () => interval$.unsubscribe();
+    }, []);
 
     return <Portal elementId={'navbar'}>
         <nav className={'nav-bar center row'}>

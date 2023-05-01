@@ -53,7 +53,7 @@ export const ProductList = ({ warehouseId }: ProductListProps) => {
     return <div className={'bgc-light-1 border-radius-px-4 box-shadow h-100 p-16 mt-30'}>
         <h2 className={'color-dark-2 fs-30 fw--700 mb-27'}>{trans('packages')}</h2>
         <div className={'row '}>
-            {products?.map(data => <div className={'col-md-6 col-10 mr-9 mb-9'}>
+            {products?.map(data => <div key={data._id} className={'col-md-6 col-10 mr-9 mb-9'}>
                     <div className={'row product-card h-100 hover-scale'}>
                         <div className={'col-24'}>{formatLongText(data.title, 30)}</div>
                         <div className={'col-24 center py-10'}>
