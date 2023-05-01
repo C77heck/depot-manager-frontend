@@ -31,8 +31,8 @@ export const AvailableWarehouses = ({ onFinish, onPick, currentWarehouseId }: Av
         return null;
     }
 
-    return <div className={'w-100 display-flex'}>
-        <h2 className={'fs-30 text-align-center'}>{trans('available.warehouses')}</h2>
+    return <div className={'w-100 display-flex flex-column'}>
+        <h2 className={'fs-20 text-align-center mb-16'}>{trans('available.warehouses')}</h2>
         {warehouses.map(warehouse => <div key={warehouse.name} className={'width-fit-content m-5'}>
             <Button
                 buttonStyle={warehouse._id === active ? 'full' : 'outline'}
