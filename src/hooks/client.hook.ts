@@ -36,6 +36,20 @@ export const useClient = () => {
         }
     };
 
+    const createRandomProductSend = async () => {
+        try {
+            setIsLoading(true);
+
+            const response = await axios.get(`${endpoint}/products/random-send`);
+
+            return response.data?.payload;
+        } catch (e) {
+            throw e?.response?.data?.error || 'generic.error';
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
     const createProduct = async (data: ProductCreateOptions) => {
         try {
             setIsLoading(true);
@@ -168,6 +182,7 @@ export const useClient = () => {
         getWarehouse,
         sendProducts,
         transferProduct,
+        createRandomProductSend,
         getAvailableWarehouses,
         isLoading,
     };

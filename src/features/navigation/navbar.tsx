@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useCallback } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
+import { useClient } from '../../hooks/client.hook';
 import { Constants } from '../../libs/constants';
 import { LoginButton } from '../authentication/login.button';
 import { LangPicker } from '../lang-picker/lang-picker';
@@ -15,7 +16,8 @@ export const NavBar = (props: any) => {
     const { pathname } = useLocation();
     const isHome = pathname === '/';
     const sizeClass = isHome ? 'col-6' : 'col-8';
-
+    const { createRandomProductSend } = useClient();
+    // todo finish this random send prod
     const getColor = useCallback((link: string) => {
         const genericClasses = 'text-decoration-none uppercase fs-mlg-17 fs-14 white-space-nowrap py-20 fw--700';
 
