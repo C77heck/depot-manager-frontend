@@ -319,8 +319,14 @@
 
     @each $i in 10, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100 {
         .#{w- + $i} {
-            width: $i * 1% !important;
+            width: $i * 1%;
         }
+        .#{w-md- + $i} {
+            @media (min-width: $md) {
+                width: $i * 1% !important;
+            }
+        }
+
         .#{max-width- + $i} {
             max-width: $i + rem !important;
         }
@@ -380,6 +386,12 @@
         .#{px- + $i} {
             padding-left: $i + px !important;
             padding-right: $i + px !important;
+        }
+        .#{px-md- + $i} {
+            @media (min-width: $md) {
+                padding-left: $i + px !important;
+                padding-right: $i + px !important;
+            }
         }
         .#{py- + $i} {
             padding-top: $i + px !important;

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Close } from '../icons/icons';
 import { Portal } from '../portal';
 import './modal.scss';
 
@@ -28,7 +29,7 @@ interface ModalProps {
 export class Modal extends React.Component<ModalProps, any> {
     public state = {
         show: false,
-        screenSize: 1500,
+        screenSize: window.innerWidth,
     };
 
     public componentDidMount() {
@@ -115,6 +116,8 @@ export class Modal extends React.Component<ModalProps, any> {
             style={{ width, left }}
         >
             <div className={headerClasses}>
+                <Close onClick={() => this.setState({ show: false })} className={'position-absolute float-right hover-opacity'} width={27}/>
+
                 {header && header}
             </div>
             <div className={`${contentClasses} px-20 pt-20 pb-5`}>

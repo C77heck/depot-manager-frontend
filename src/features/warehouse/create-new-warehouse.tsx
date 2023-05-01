@@ -30,7 +30,7 @@ export const CreateNewWarehouse = () => {
         content={<CreateWarehouseForm onSuccess={handleOnSuccess}/>}
         size={{ sm: 90, md: 72, lg: 40, xl: 30 }}
         header={<h2 className={'fs-30 text-align-center'}>{trans('new.warehouse')}</h2>}
-        trigger={<button className={'center nav-bar-item bgc-primary-2 hover-scale'}>
+        trigger={<button className={'center nav-bar-item bgc-primary-1 hover-scale'}>
             <AddIcon className={'color-light-1'} width={24}/>
         </button>}
     />;

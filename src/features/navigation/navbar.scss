@@ -10,9 +10,13 @@
         border-radius: 800px;
         z-index: 200;
         position: fixed;
-        top: 4vh;
-        left: 25vw;
-        width: 50vw;
+        top: 5vh;
+        width: 96vw;
+        left: 2vw;
+        @media (min-width: $md) {
+            width: 50vw;
+            left: 25vw;
+        }
         background-color: map-get-deep($colours, 'primary', 3);
         padding: .5rem 2rem;
         cursor: pointer;

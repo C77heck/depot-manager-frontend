@@ -23,7 +23,7 @@ export const ScreenRoute = (props: ScreenRouteProps) => {
             path={props.route}
             element={!ready
                 ? <div className={'screen-view center'}>
-                    <div className={'w-20'}>
+                    <div className={'w-md-20 w-50'}>
                         <Spinner onComplete={() => setReady(true)}/>
                     </div>
                 </div>

@@ -7,6 +7,7 @@
 @import "features/shared-ui/buttons/button";
 @import "features/shared-ui/inputs/input";
 @import "features/warehouse/warehouse";
+@import "features/shared-ui/modal/modal";
 
 @include Helpers($lg, $xl, $md, $sm, $colours);
 @include Fonts();
@@ -15,3 +16,4 @@
 @include Navbar($colours);
 @include Input($colours);
 @include Warehouse($colours);
+@include Modal($md);
