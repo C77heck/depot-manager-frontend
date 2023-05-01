@@ -34,7 +34,7 @@ export const WarehouseView = ({ id }: { id: string }) => {
             <div className={'col-24 mb-50'}>
                 <WarehouseActionsButtons data={data.warehouse}/>
             </div>
-            <div className={'col-md-12 col-24 px-30 my-15'}>
+            <div className={'col-md-12 col-24 px-30 my-15 height-fit-content'}>
                 <WarehouseDetails data={data?.warehouse} capacity={data?.capacityUtilization}/>
             </div>
             <div className={'col-md-12 col-24 px-30 my-15'}>

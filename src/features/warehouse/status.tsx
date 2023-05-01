@@ -4,7 +4,7 @@ import { Warehouse } from './warehouse-list';
 
 export const Status = ({ data, capacity }: { data?: Warehouse | undefined }) => {
     const { trans } = useTranslateContext();
-    console.log(data, capacity);
+
     if (!data) {
         return null;
     }

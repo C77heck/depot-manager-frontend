@@ -11,8 +11,8 @@ export const WarehouseItem = React.memo(({ data }: { data: Warehouse }) => {
     const { trans } = useTranslateContext();
     const chartData: number[] = [data.capacityUtilization, data.maximumCapacity, data.availableCapacity];
 
-    return <div className={'warehouse-box'}>
-        <div className={'row mb-7'}>
+    return <div className={'w-100 bgc-light-1 border-radius-px-4 box-shadow h-100 p-30'}>
+        <div className={'row mb-19'}>
             <div className={'col-18 display-flex justify-content-start'}>
                 <Status data={data} capacity={data.capacityUtilization}/>
             </div>
@@ -52,7 +52,7 @@ export const WarehouseItem = React.memo(({ data }: { data: Warehouse }) => {
             <Chart
                 doNotDisplayLegend={true}
                 colorIndex={1}
-                chartName={'Bar'}
+                chartName={'Line'}
                 data={chartData}
                 labels={[trans('current.capacity'), trans('maximum.capacity'), trans('available.capacity')]}
             />

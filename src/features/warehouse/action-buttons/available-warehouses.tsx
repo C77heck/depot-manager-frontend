@@ -19,8 +19,9 @@ export const AvailableWarehouses = ({ onFinish, onPick, currentWarehouseId }: Av
         (async () => {
             const warehouses: any[] = await getAvailableWarehouses();
 
-            onFinish?.(!!warehouses?.length);
-            setWarehouses(warehouses.filter(warehouse => warehouse?._id !== currentWarehouseId));
+            const filteredWarehouses = warehouses.filter(warehouse => warehouse?._id !== currentWarehouseId);
+            onFinish?.(!!filteredWarehouses?.length);
+            setWarehouses(filteredWarehouses);
         })();
     }, []);
 

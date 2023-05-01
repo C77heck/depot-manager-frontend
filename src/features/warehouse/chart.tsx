@@ -34,10 +34,8 @@ export const options: ChartOptions<any> = {
     angleLines: {
         display: false
     },
-    x: {},
     animation: false,
     maintainAspectRatio: false,
-    legend: { display: true },
     responsive: true,
     interaction: {
         mode: 'index' as const,
@@ -53,14 +51,6 @@ export const options: ChartOptions<any> = {
     },
     stacked: false,
     plugins: {
-        datalabels: {
-            formatter: (val, context) => `${val}%`,
-        },
-        tooltip: {
-            callbacks: {
-                label: (ttItem) => `${ttItem.formattedValue}%`
-            }
-        },
         title: {
             display: false,
             text: '',
@@ -75,9 +65,6 @@ export const options: ChartOptions<any> = {
             position: 'left' as const,
             ticks: {
                 stepSize: 2,
-                callback: (value, index, values) => {
-                    return `${value}%`;
-                },
             },
         },
     },
@@ -129,7 +116,7 @@ export class Chart extends React.Component<GraphProps, ChartStateProps> {
     }
 
     public setChartData() {
-        const colours = { borderColor: '#58b7cc', backgroundColor: '#3c9173' };
+        const colours = { borderColor: '#58b7cc', backgroundColor: '#49b68f' };
 
         this.setState({
             data: {
@@ -143,15 +130,11 @@ export class Chart extends React.Component<GraphProps, ChartStateProps> {
     }
 
     public getOptions() {
-        const barThickness = this.props.barThickness ? { barThickness: 30 } : {};
-        const hideVerticalLines = this.props.hideVertical ? { x: { grid: { display: false } } } : {};
-
         const blockOptions = {
             ...options,
-            ...barThickness,
             scales: {
                 ...options.scales,
-                ...hideVerticalLines
+                x: { grid: { display: false } }
             }
         };
 
@@ -178,15 +161,13 @@ export class Chart extends React.Component<GraphProps, ChartStateProps> {
 
         switch (this.props.chartName) {
             case 'Line':
-                // todo this is for the collective together
                 return <Line data={{ labels, datasets } as ChartData<any, any, any>} options={blockOptions}/>;
             case 'Bar':
-                // todo make it double
                 return <div style={{ height: 270 }}>
                     <Bar data={{ labels, datasets } as ChartData<any, any, any>} options={blockOptions}/>
                 </div>;
             case 'Pie':
-                return <Pie data={{ labels, datasets } as ChartData<any, any, any>} options={blockOptions}/>;
+                return <Pie data={{ labels, datasets } as ChartData<any, any, any>} options={{}}/>;
             default:
                 return <Pie data={{ labels, datasets } as ChartData<any, any, any>} options={blockOptions}/>;
         }

@@ -21,6 +21,7 @@ export default {
     history: 'History',
     closed: 'Closed',
     open: 'Open',
+    'feature.unavailable': 'Status cannot be changed',
     full: 'Full',
     submit: 'Submit',
     'only.numbers': 'Input must be numeric',
@@ -53,7 +54,6 @@ export default {
     'transfer.packages': 'Transfer packages',
     'change.status': 'Change status',
     'empty.list': 'Empty list',
-
     'email.is.missing': 'Email is missing!',
     'missing.session.id': 'Missing session id',
     'user.not.found': 'User not found!',
@@ -65,7 +65,6 @@ export default {
     'failed.login': 'Login failed, please try again',
     'too.many.attemmpts': 'You have made too many unsuccessful login attempts. Please wait for 3 minutes and try again.',
     'invalid.login': 'Could not log you in, please check your credentials and try again',
-
     'generic.success': 'Success',
     'user.successfully.updated': 'User data has been successfully updated.',
     'account.successfully.deleted': 'Account has been successfully deleted.',

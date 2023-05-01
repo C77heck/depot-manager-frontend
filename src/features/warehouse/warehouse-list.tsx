@@ -28,7 +28,7 @@ export const WarehouseList = () => {
         <div className={'col-24 center'}>
             <h1 className={'fs-50 mb-34'}>{trans('warehouses')}</h1>
         </div>
-        {warehouses?.map(warehouse => <div key={warehouse._id} className={'col-md-12 col-24 center'}>
+        {warehouses?.map(warehouse => <div key={warehouse._id} className={'col-md-12 col-24 center mb-80 px-60'}>
             <WarehouseItem data={warehouse}/>
         </div>)}
     </div>;

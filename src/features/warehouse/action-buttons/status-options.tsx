@@ -41,7 +41,7 @@ export const StatusOptions = ({ warehouseId, onSuccess }: StatusOptionsProps) =>
 
     if (!isAvailable) {
         return <div className={'w-100 center pb-30 pt-15'}>
-            <h3 className={'color-dark-2 fs-15'}>{trans('temp.closed')}</h3>
+            <h3 className={'color-dark-2 fs-15'}>{trans('feature.unavailable')}</h3>
         </div>;
     }
 
