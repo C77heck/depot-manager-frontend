@@ -19,7 +19,7 @@ export const WarehouseActionsButtons = ({ data }: WarehouseActionsButtonsProps) 
     const handleRandomAdd = async () => {
         const randomAmount = Array.from({ length: Math.floor(Math.random() * 10) });
 
-        return Promise.all(randomAmount.map(round => createRandomProductGet()));
+        return Promise.all(randomAmount.map(round => createRandomProductGet(data?._id || '')));
     };
 
     return <div className={'row center'}>

@@ -49,11 +49,11 @@ export const useClient = () => {
             setIsLoading(false);
         }
     };
-    const createRandomProductGet = async () => {
+    const createRandomProductGet = async (warehouseId: string) => {
         try {
             setIsLoading(true);
 
-            const response = await axios.get(`${endpoint}/products/random-get`);
+            const response = await axios.get(`${endpoint}/products/random-get/${warehouseId}`);
 
             return response.data?.payload;
         } catch (e) {
