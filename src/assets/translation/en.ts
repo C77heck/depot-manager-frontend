@@ -68,5 +68,6 @@ export default {
     'generic.success': 'Success',
     'user.successfully.updated': 'User data has been successfully updated.',
     'account.successfully.deleted': 'Account has been successfully deleted.',
-    'available.warehouses': 'Selectable warehouses'
+    'available.warehouses': 'Selectable warehouses',
+    'random.add': 'Random add'
 };
