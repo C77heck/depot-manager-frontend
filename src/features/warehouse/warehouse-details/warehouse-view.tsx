@@ -4,6 +4,7 @@ import { useClient } from '../../../hooks/client.hook';
 import { WarehouseActionsButtons } from '../action-buttons/warehouse-actions-buttons';
 import { History, ProductHistoryList } from '../product-history/product-history-list';
 import { Warehouse } from '../warehouse-list';
+import { ProductList } from './product-list';
 import { WarehouseDetails } from './warehouse-details';
 
 export interface IWarehouseDetails {
@@ -34,8 +35,14 @@ export const WarehouseView = ({ id }: { id: string }) => {
             <div className={'col-24 mb-50'}>
                 <WarehouseActionsButtons data={data.warehouse}/>
             </div>
-            <div className={'col-md-12 col-24 px-30 my-15 height-fit-content'}>
-                <WarehouseDetails data={data?.warehouse} capacity={data?.capacityUtilization}/>
+
+            <div className={'col-md-12 col-24 px-30 my-15 height-fit-content row'}>
+                <div className={'col-24'}>
+                    <WarehouseDetails data={data?.warehouse} capacity={data?.capacityUtilization}/>
+                </div>
+                <div className={'col-24'}>
+                    <ProductList warehouseId={data?.warehouse?._id || ''}/>
+                </div>
             </div>
             <div className={'col-md-12 col-24 px-30 my-15'}>
                 <ProductHistoryList histories={data?.histories || []}/>

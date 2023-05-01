@@ -22,21 +22,20 @@ export const WarehouseItem = React.memo(({ data }: { data: Warehouse }) => {
         }
     });
 
-    console.log({ sent, arrived });
     const chartData: number[] = [data.maximumCapacity, data.capacityUtilization, data.availableCapacity, arrived, sent];
     const labels: string[] = [trans('maximum.capacity'), trans('current.capacity'), trans('available.capacity'), trans('arrived'), trans('sent')];
-    console.log(data);
+
     return <div className={'w-100 bgc-light-1 border-radius-px-4 box-shadow h-100 p-30'}>
         <div className={'row mb-19'}>
             <div className={'col-18 display-flex justify-content-start'}>
                 <Status data={data} capacity={data.capacityUtilization}/>
             </div>
             <div className={'col-6 display-flex justify-content-end'}>
-                <div className={'bgc-primary-2 p-6 border-radius-px-4 hover-opacity'}>
-                    <Link to={`/warehouse/${data._id}`}>
+                <Link to={`/warehouse/${data._id}`}>
+                    <div className={'bgc-primary-2 p-6 border-radius-px-4 hover-opacity'}>
                         <ViewDetailsIcon className={'color-light-1'} width={18}/>
-                    </Link>
-                </div>
+                    </div>
+                </Link>
             </div>
         </div>
         <div className={'row mb-7'}>
