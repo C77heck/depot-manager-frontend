@@ -9,8 +9,23 @@ import './warehouse.scss';
 
 export const WarehouseItem = React.memo(({ data }: { data: Warehouse }) => {
     const { trans } = useTranslateContext();
-    const chartData: number[] = [data.capacityUtilization, data.maximumCapacity, data.availableCapacity];
+    let sent = data?.histories?.map(history => history?.type === 'sent' ? 1 : 0).reduce((a, b) => a + b, 0) || 0;
+    let arrived = data?.histories?.map(history => history?.type === 'arrived' ? 1 : 0).reduce((a, b) => a + b, 0) || 0;
 
+    data?.histories?.forEach(history => {
+        if (history?.type === 'transferred') {
+            if (history.from?._id === data._id) {
+                sent++;
+            } else {
+                arrived++;
+            }
+        }
+    });
+
+    console.log({ sent, arrived });
+    const chartData: number[] = [data.maximumCapacity, data.capacityUtilization, data.availableCapacity, arrived, sent];
+    const labels: string[] = [trans('maximum.capacity'), trans('current.capacity'), trans('available.capacity'), trans('arrived'), trans('sent')];
+    console.log(data);
     return <div className={'w-100 bgc-light-1 border-radius-px-4 box-shadow h-100 p-30'}>
         <div className={'row mb-19'}>
             <div className={'col-18 display-flex justify-content-start'}>
@@ -52,9 +67,9 @@ export const WarehouseItem = React.memo(({ data }: { data: Warehouse }) => {
             <Chart
                 doNotDisplayLegend={true}
                 colorIndex={1}
-                chartName={'Line'}
+                chartName={'Bar'}
                 data={chartData}
-                labels={[trans('current.capacity'), trans('maximum.capacity'), trans('available.capacity')]}
+                labels={labels}
             />
         </div>
     </div>;

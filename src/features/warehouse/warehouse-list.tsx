@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useResourceRefresherContext } from '../../contexts/resource-refresher.context';
 import { useTranslateContext } from '../../contexts/translate.context';
 import { useClient } from '../../hooks/client.hook';
+import { History } from './product-history/product-history-list';
 import { WarehouseItem } from './warehouse-item';
 
 export interface Warehouse {
@@ -11,6 +12,7 @@ export interface Warehouse {
     maximumCapacity: number;
     capacityUtilization: number;
     availableCapacity: number;
+    histories: History[];
 }
 
 export const WarehouseList = () => {
@@ -21,7 +23,11 @@ export const WarehouseList = () => {
 
     useEffect(() => {
         (async () => getResources())();
-        (async () => setWarehouses(await getWarehouses()))();
+        (async () => {
+            const data = await getWarehouses();
+
+            setWarehouses(data);
+        })();
     }, [refresh]);
 
     return <div className={'row'}>

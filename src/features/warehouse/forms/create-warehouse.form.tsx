@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { FormEvent, useState } from 'react';
+import { toast } from 'react-toastify';
 import { useTranslateContext } from '../../../contexts/translate.context';
 import { CreateWarehouseOptions, useClient } from '../../../hooks/client.hook';
 import { useForm } from '../../../hooks/form.hook';
@@ -29,14 +30,17 @@ export const CreateWarehouseForm = (props: FormProps) => {
 
     const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        try {
+            if (!isFormValid) {
+                return setValidate(!validate);
+            }
 
-        if (!isFormValid) {
-            return setValidate(!validate);
+            await createWarehouse(payload as CreateWarehouseOptions);
+            toast(trans('success'), { type: 'success' });
+            props.onSuccess();
+        } catch (e) {
+            toast(e, { type: 'error' });
         }
-
-        await createWarehouse(payload as CreateWarehouseOptions);
-
-        props.onSuccess();
     };
 
     return <div>
