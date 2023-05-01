@@ -81,7 +81,7 @@ export const StatusOptions = ({ warehouseId, onSuccess }: StatusOptionsProps) =>
                     isLoading={isLoading}
                     buttonStyle={'submit'}
                 >
-                    <span className={'fs-18 fw--700'}>{trans('login')}</span>
+                    <span className={'fs-18 fw--700'}>{trans('submit')}</span>
                 </Button>
             </div>
         </div>
