@@ -15,5 +15,5 @@
 @include Button($colours);
 @include Navbar($colours);
 @include Input($colours);
-@include Warehouse($colours);
+@include Warehouse($md, $colours);
 @include Modal($md);

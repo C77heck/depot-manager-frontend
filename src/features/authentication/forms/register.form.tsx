@@ -61,7 +61,7 @@ export const RegisterForm = (props: FormProps) => {
         }
     };
 
-    return <div>
+    return <div className={'scrollable'}>
         <form onSubmit={(e) => handleLogin(e)}>
             <div className={'mb-30 center flex-column'}>
                 <div className={'max-width-30 w-100'}>

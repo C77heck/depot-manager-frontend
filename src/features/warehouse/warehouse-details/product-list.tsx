@@ -38,7 +38,7 @@ export const ProductList = ({ warehouseId }: ProductListProps) => {
     }, []);
 
     if (!products?.length) {
-        return <div className={'w-100 center'}>
+        return <div className={'bgc-light-1 border-radius-px-4 box-shadow h-100 p-16 mt-30 w-100 center mb-30'}>
             <h3 className={'color-dark-2 fs-15'}>{trans('empty.list')}</h3>
         </div>;
     }

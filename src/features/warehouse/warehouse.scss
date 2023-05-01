@@ -1,8 +1,11 @@
-@mixin Warehouse($colours) {
+@mixin Warehouse($md, $colours) {
 
     .scrollable {
         overflow-y: scroll;
-        max-height: 400px;
+        max-height: 90vh;
+        @media (min-width: $md) {
+            max-height: 550px;
+        }
     }
     .product-card {
         border-radius: 4px;
