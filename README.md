@@ -2,7 +2,6 @@
 
 # Installation
 npm install;
-yarn install;
 
 # run the project
 npm run start;
